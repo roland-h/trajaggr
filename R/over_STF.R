@@ -28,7 +28,7 @@ NULL
 # gI_Polyg_fromGrid <- rgeos::gIntersects(spPolygA1_fromGrid, A1@sp, byid = TRUE)
 # # Testing for equivalence of the gIntersects results
 # all.equal(gI_Polyg, gI_Polyg_fromGrid)
-# # --> [1] "Attributes: < Component “dimnames”: Component 2: 9 string mismatches >"
+# # --> [1] "Attributes: < Component dimnames: Component 2: 9 string mismatches >"
 # # --> ok!
 # # Determine which points are intersecting which polygons by sp::over
 # over_Polyg <- over(spPolygA1, A1@sp, returnList = TRUE)
@@ -233,7 +233,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                   # avoid NaN
                   if (any(!is.na(zz))) {
                     
-                    # !!! Achtung : Auskommentierung ändern!
+                    # !!! Achtung : Auskommentierung aendern!
                     #fn(zz, na.rm=T)
                     fn(zz, ...)
 

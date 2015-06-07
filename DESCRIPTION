@@ -1,19 +1,19 @@
 Package: trajaggr
 Version: 0.1
-Title: Meaningful aggregation of trajectory data in R
+Title: Meaningful Aggregation of Trajectory Data in R
 Authors@R: person("Roland", "Harhoff", role = c("cre", "aut"), email =
     "rolandh@uni-muenster.de")
-Description: The package 'trajaggr' provides S4 generic methods for meaningful
-    aggregation of trajectory data represented by objects defined in the R
-    package 'trajectories'. It includes methods for spatio-temporal overlay of
-    'Track' objects with 'Spatial' objects defined in package 'sp' and STF
-    objects defined in package 'spacetime'. On basis of the 'over' methods for
-    spatio-temporal overlay also 'aggregate' methods are provided to aggregate
-    'Track', 'Tracks' or 'TracksCollection' objects over 'Spatial' or 'STF'
-    objects. Moreover a method 'count' is provided, that may be used to count
-    the number of trajectory objects over 'Spatial' or 'STF' objects. To enable
-    the usage and analysis of (animal) trajectory objects represented by
-    classes defined in other R packages, in particular in the packages 'move'
+Description: For meaningful aggregation of trajectory data represented by
+    objects defined in the R package 'trajectories' S4 generic methods are
+    provided. The package 'trajaggr' includes methods for spatio-temporal
+    overlay of 'Track' objects with 'Spatial' objects defined in package 'sp'
+    and STF objects defined in package 'spacetime'. On basis of the 'over'
+    methods for spatio-temporal overlay also 'aggregate' methods are provided
+    to aggregate 'Track', 'Tracks' or 'TracksCollection' objects over 'Spatial'
+    or 'STF' objects. Moreover a method 'count' is provided, that may be used
+    to count the number of trajectory objects over 'Spatial' or 'STF' objects.
+    To enable the usage and analysis of (animal) trajectory objects represented
+    by classes defined in other R packages, in particular in the packages 'move'
     and 'adehabitatLT', bidirectional coercion methods are implemented, that
     provide coercion between objects defined in 'trajectotries' and objects
     defined in 'move' and 'adehabitatLT'.

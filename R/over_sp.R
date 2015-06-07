@@ -24,7 +24,7 @@ NULL
 # gI_Polyg_fromGrid <- rgeos::gIntersects(spPolygA1_fromGrid, A1@sp, byid = TRUE)
 # # Testing for equivalence of the gIntersects results
 # all.equal(gI_Polyg, gI_Polyg_fromGrid)
-# # --> [1] "Attributes: < Component “dimnames”: Component 2: 9 string mismatches >"
+# # --> [1] "Attributes: < Component dimnames: Component 2: 9 string mismatches >"
 # # --> ok!
 # # Determine which points are intersecting which polygons by sp::over
 # over_Polyg <- over(spPolygA1, A1@sp, returnList = TRUE)
@@ -351,10 +351,10 @@ setMethod("over", signature(x = "SpatialGrid", y = "Track"), over_sp_Track)
 #     } else { # retuenList == FALSE, use.data = T | selection
 #       
 #       # FAST kein Unterschied zw. fn = NULL und fn != Null,
-#       # da jede spatio-temporal geometry max nur 1 point enthält!?!
+#       # da jede spatio-temporal geometry max nur 1 point enthaelt!?!
 #       # --> fn wird nicht angewendet!
 #       
-#       # --> wie implementieren / Berücksichtigen ???
+#       # --> wie implementieren / Beruecksichtigen ???
 #       
 #       # --> einzige Unterschiede:
 #       # - is NULL == fn: evtl time dazu und keine metadaten
@@ -428,7 +428,7 @@ setMethod("over", signature(x = "SpatialGrid", y = "Track"), over_sp_Track)
 #         if (length(y@data) > 0) {
 #           
 #           # kein Unterschied zw. is.null(weight.points) und !is.null(weight.points),
-#           # da jede spatio-temporal geometry max nur 1 point enthält!?!
+#           # da jede spatio-temporal geometry max nur 1 point enthaelt!?!
 #           # --> fn wird nicht angewendet! --> auch kein weighting !?!
 #           
 #           if (!is.null(weight.points)) { # apply fn to data without weighting
@@ -475,7 +475,7 @@ setMethod("over", signature(x = "SpatialGrid", y = "Track"), over_sp_Track)
 #   #vec_sub_num
 #   ### 
 #   
-#   ## Passt nicht , da alle Points berücksichtigt werden, und nichtnur die matchen..!
+#   ## Passt nicht , da alle Points beruecksichtigt werden, und nichtnur die matchen..!
 #   #vec <- as.vector(gI_matrix)
 #   #w <- which(vec)
 #   #trackIndex <- seq_along(y)
