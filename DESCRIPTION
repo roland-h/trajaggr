@@ -24,7 +24,7 @@ Imports:
     sp (>= 1.0-14),
     spacetime (>= 1.0-0),
     trajectories (>= 0.1-1),
-    move,
+    move (>= 1.4),
     zoo,
     rgeos,
     adehabitatLT,

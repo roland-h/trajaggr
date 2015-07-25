@@ -1,95 +1,31 @@
 \documentclass[12pt, oneside, a4paper]{scrbook}
-%\documentclass[12pt, oneside, a4paper, headsepline, liststotoc]{scrbook}
 
-%\VignetteIndexEntry{Meaningful aggregation of trajectory data in R} 
+%\VignetteIndexEntry{Meaningful aggregation and coercion of trajectory data in R} 
 
-% TODO
-% evtl comment on required packages??? --> Probl with as.MoveStack !?!
-% Introduction !?
-
-% Vignette keywords, etc..
-% !!! checke umlaute, etc --> encoding!?!
-% To find non-ascii characters:
-%tools::showNonASCIIfile("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Aggregation/Aggregation.Rnw")
-
-%Rtangle / Stangle
-%Stangle("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Master.Rnw")
-%source("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/Master.R")
-%other output path !!!
-%Stangle("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Master.Rnw",
-%  output = "/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/Master_Stangle.R")
-%source("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/Master_Stangle.R")
-
-% An alternative to this solution of the SweaveInput Problem would be a dummy.Rnw file
-% which reads a already created Master.pdf
-% --> no check of R code in vignette!?
-
-%% Based on ...
-%% https://support.rstudio.com/hc/en-us/articles/200486298
-%% Lesezeichen folder: R_Infos/Sweave/!_RStudio_Sweave_and_Knitr
-
-% Inhalt: TODO
-% -Danksagung
-% -Anhang --> ?!
-
-%\usepackage[latin1]{inputenc} % auskommentieren, wenn ich biblatex nutze fuer multiple files
-\usepackage[utf8]{inputenc} % auskommentieren, wenn ich biblatex nutze fuer multiple files
-\usepackage[T1]{fontenc} % oder auskommentieren???
-\usepackage{indentfirst} % --> nutzen !? --> ? ??? Einruecken am Absatzanfang!?
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage{indentfirst}
 \usepackage{Sweave}
-%h\usepackage{hyperref} % --> warning - Token not allowed in a PDF string --> because of e.g. \pkg in section name !?
-%\usepackage[nottoc, notlof, notlot]{tocbibind} % adds entries for lof and lot to toc.
+
 \usepackage[nottoc]{tocbibind} % adds entries for lof and lot to toc.
-\usepackage{microtype} % important to avoid overfull boxes
-%\usepackage{parskip} % empty rows --> changes Bibliography spaces etc. ...
-%\usepackage[linktocpage=true]{hyperref} % errors mit e.g. proglang{} in section title
+\usepackage{microtype} % avoid overfull boxes
+
 \usepackage[section]{placeins} % keeps figures in its section
 
 
-% Bibiliography for just one Rnw-file:
+% Bibiliography:
 \usepackage[authoryear]{natbib}
 \bibliographystyle{apalike}
 %\bibliographystyle{plainnat}
 
-
-% MUELL delete
-%%\usepackage[rootbib]{chapterbib}
-
-% Bibliography tests
-% Problem with zotero, utf8, biber(!) and bibtex
-% --> bibtex geht nicht mit multiple Rnw-files --> biblatex
-% --> biblatex: biber needed for utf8
-% --> biber does not work with zotero biblatex export !?!?
-% (but biber doesnt work with ordinary bibtex-files and authoryear from zotero)
-% --> utf8?, zotero?, natbib?, style?
-% !!! For development, utf8 inputencoding auskomentieren
-%\usepackage[natbib=true, style=numeric, backend=bibtex]{biblatex}
-%\addbibresource[datatype=bibtex]{Traj_Analysis_20140929.bib}
-
-%%%
-% !!! that worked with SweaveInput
-%\usepackage[natbib=true, style=authoryear, backend=bibtex8]{biblatex}
-%\addbibresource[datatype=bibtex]{Traj_Analysis_20140929.bib}
-
-%\usepackage[natbib=true, style=numeric, backend=bibtex8]{biblatex}
-%\usepackage[natbib=true, style=numeric]{biblatex}
-%\usepackage[natbib=true, style=numeric, backend=biber]{biblatex}
-%\addbibresource[datatype=biblatex]{Traj_Analysis_20141115_better_biblatex.bib}
-%\bibliography{Traj_Analysis_20141114_Format_biblatex.bib}
-%\bibliography{Traj_Analysis_20141114_Format_better_biblatex2.bib}
-%\addbibresource[location=remote,datatype=bibtex]{Traj_Analysis_20140929.bib}
-%\addbibresource[datatype=biblatex]{Traj_Analysis_20141114_Format_better_biblatex2.bib}
-%%%
 
 % Provide text formats for R code, packages, etc.
 % from https://stat.ethz.ch/pipermail/r-help/2007-November/144810.html
 \newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
 \let\proglang=\textsf
 \let\code=\texttt
-% from sp (but in sp without given font encoding !?!)
 \newcommand{\codeintitles}[1]{{\tt #1}} % solves font problems in chapter / sections / etc. titles
 
-%%% \ Sweave UTF8
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,97 +41,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Title %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ----------%
-%\SweaveInput{ChapterY/ChapterY.Rnw}
-%\SweaveInput{TitlePage/TitlePage.Rnw}
-%\SweaveInput{TitlePage.sub}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/TitlePage/TitlePage.Rnw}
-%\maketitle
 
-%\begin{titlepage}
-
-\titlehead{\center Westf\"alische Wilhelms-Universit\"at M\"unster - Institut f\"ur Geoinformatik (ifgi) \\ University of M\"unster - Institute for Geoinformatics (ifgi)}
-\title{Meaningful aggregation \\ of trajectory data in \proglang{R}}
+\title{Meaningful aggregation and \\ coercion of trajectory data in \proglang{R}}
 \subtitle{}
-\author{Roland Harhoff}
-\subject{Bachelorarbeit - Bachelor Thesis}
-\publishers{Advisor: \\ Prof. Edzer Pebesma \\ Dr. Benedikt Gr\"aler}
-%\date{\today}
-\date{\the\day.\the\month.\the\year}
-
-% \begin{center}
-% \begin{Huge}
-% Institut fuer Bedeutungen\\
-% \vspace{3mm}
-% \end{Huge}{\Large Universitaet Bunkenstedt}\\
-% \vspace{20mm}
-% \begin{Large}
-% Die Bedeutung der Bedeutungen unter besonderer Beruecksichtigung der Bedeutungen\\
-% \end{Large}
-% \vspace{8mm}
-% Masterarbeit\\
-% \vspace{0.4cm}
-% \vspace{2 cm}
-% Max Mustermann \\
-% Matrikel-Nummer 12345678\\
-% \vspace{8cm}
-% \begin{tabular}{ll}
-% {\bf Betreuer} & Maxima Musterfrau\\
-% {\bf Erstpruefer}&Prof. Musterus\\
-% {\bf Zweitpruefer}&Prof. Mustera\\
-% \end{tabular}
-% \end{center}
-% \clearpage
-
-
-%\department{Institut}
-%\degree{Bachelor of Science in ...}
-%\degreemonth{June}
-%\degreeyear{1990}
-%\thesisdate{May 18, 1990}
-%\supervisor{William J. Dally}{Associate Professor}
-%\chairman{Arthur C. Smith}{Chairman, Department Committee on Graduate Theses}
-
+\author{\\ Roland Harhoff \\}
+%\subject{}
+%\publishers{}
+\date{\today}
 
 \maketitle
 
-%\end{titlepage}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \frontmatter
-
-%\addtocontents{toc}{\protect\enlargethispage{2\baselineskip}} % wrong page number
-%\addtocontents{toc}{~\vspace{-2\baselineskip}} % latex error
-\tableofcontents
-
-
-\listoftables
-\begingroup
-\let\clearpage\relax
-\listoffigures
-\endgroup
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Abstarct %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Abstract}
 
-% don 't forget count and coercion !!!!
-% without interpretation
-
 \minisec{Background}
-%%%% Background / Motivation / Problemstatement %%%%
-%Thema und (Zielsetzung)
-%Theorie ueber das thema
-%(Fragestellung)
 Nowadays an increasing amount of trajectory data with observed attribute values attached to the spatial positions of moving entities is generated.
 Data aggregation is an useful and proposed technique to explore and analyse such data.
 The \proglang{R} software environment provides solutions to handle and analyse spatial and spatio-temporal data.
@@ -203,62 +68,49 @@ The recently implemented \proglang{R} package \pkg{trajectories} supports the re
 It contains methods for a \textit{pure} spatial aggregation of trajectory point attribute data without respecting the trajectories' temporal characteristic.
 
 \minisec{Aims}
-%Zielsetzung und Fragestellung
 This work aims to provide methods for meaningful overlay and (weighted) aggregation of trajectory data in \proglang{R} that respect the spatial and temporal domain.
-%characteristics of the trajectories. 
 The methods are supposed to be applicable to objects of classes defined in \pkg{trajectories} and to aggregate trajectory point attribute data over spatial and spatio-temporal grouping predicates represented by objects of classes defined in the packages \pkg{sp} and \pkg{spacetime}. 
 Another aim is to provide methods for coercion of objects of classes that represent trajectories and that are defined in other \proglang{R} packages.
 
 \minisec{Methods}
-%Quellen / beantwortung der Fragestellung
 The implementation of the newly-created methods is guided by the implementation of methods for spatial and spatio-temporal overlay and aggregation from the packages \pkg{sp} and \pkg{spacetime}. 
 In particular this regards the methods' arguments, that are also extended, as well as the data structures of the returned objects.
 
 \minisec{Results}
-%Ergebnis
 Methods for meaningful spatial and spatio-temporal overlay and aggregation of \pkg{trajectories} objects are implemented by S4 generic functions and provided by the \proglang{R} package \pkg{trajaggr}.
 The methods respect the spatial and temporal domain of the trajectory data and may be used with spatial or spatio-temporal grouping predicates. 
 Weighted aggregation based on temporal or spatial characteristics of the trajectories is supported. 
 Also methods for bidirectional coercion between objects representing trajectory data as well as for \textit{counting} of trajectories over spatial and spatio-temporal regions are provided.
 
 \minisec{Conclusions}
-%Fazit und Prognose
 The implemented aggregation methods provide a first basic approach to fill the gap in the lack of suitable software solutions for (weighted) aggregation of trajectory data in \proglang{R} that respect the data's spatial and temporal domain in a meaningful way.
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\tableofcontents
 
+\listoftables
+\begingroup
+\let\clearpage\relax
+\listoffigures
+\endgroup
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \mainmatter
-%Main matter
-
 
 %\part{Theoretical part}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Introduction %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{Introduction/Introduction.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Introduction/Introduction.Rnw}
 
 \chapter{Introduction}
 
-% !!! Further more TODO !?!?
-
-% Intro
 Currently there is lack of suitable software solutions in \proglang{R} regarding meaningful (weighted) aggregation of trajectory data with respect to the trajectories' spatial and temporal characteristics.
 \par\medskip
 
-%%% Wichtigkeit der arbeit
-% !!! (Verortung und) Relevanz des themas und problemstellung!!!
-%bedarf der arbeit
-%???exakte Vorstellung des Themas und Fragestellung
-
-% Background
 Nowadays trajectory data with observed attribute values attached to the spatial positions of moving entities may be easily obtained, due to the further development of position tracking and parameter measuring sensors.
 Thus an increasing amount of such trajectory data is available.
 Due to the large amount of data techniques to explore, reduce and analyse these data are needed.
@@ -275,26 +127,16 @@ In particular the recently implemented package \pkg{trajectories} \citep{pebesma
 Regarding to aggregation the package \pkg{trajectories} provides methods performing a \textit{pure} spatial aggregation of trajectory point attribute data without respecting the temporal characteristic of the trajectories.
 \par\medskip
 
-%%%Ziel der Arbeit
-%Formulierung der Fragestellung / %Eingrenzung des Themas / 
-%Abgrenzung / differentiation of aggregation approach
+The aim is to provide methods for meaningful overlay and aggregation of trajectory data in \proglang{R} that respect the spatial and temporal characteristics of the trajectories. The methods for overlay constitute the basis of the aggregation methods.
 
-% Basic aims
-This thesis aims for providing methods for meaningful overlay and aggregation of trajectory data in \proglang{R} that respect the spatial and temporal characteristics of the trajectories. The methods for overlay constitute the basis of the aggregation methods.
-%In particular 
 All methods are supposed to respect the characteristic of the sampling rate as well as the overall duration (or distance) based on the intersection of the trajectories with the geometries of the grouping predicate,
 if several trajectories are involved.
 In case of aggregation of one trajectory characterized by an irregular sampling rate a weighted aggregation approach is supported that weights the observed values according to the sampling rate.
 In case of aggregation of several trajectories this approach may be extended by assigning weights to each particular trajectory, in which each weight corresponds to one particular geometry of the grouping predicate.
-%For each trajectory
-These weights are based on the duration (or distance) of 
-%a particular 
-that trajectory corresponding to its temporal (or spatial) intersection 
-%of that trajectory 
-with the geometries of the grouping predicate.
+
+These weights are based on the duration (or distance) of that trajectory corresponding to its temporal (or spatial) intersection with the geometries of the grouping predicate.
 \par\medskip
 
-% x and by args
 The implemented methods are supposed to be applicable to objects of classes defined in the package \pkg{trajectories} (\code{Track}, \code{Tracks}, \code{TracksCollection}) and to aggregate trajectory point attribute data over spatial and spatio-temporal grouping predicates represented by objects of classes defined in the packages \pkg{sp} \citep{pebesma_sp:_2014} and \pkg{spacetime} \citep{pebesma_spacetime:_2012}.
 In particular the accepted spatial grouping predicates are supposed to be objects of the classes \code{SpatialPolygons}, \code{SpatialPixels} and \code{SpatialGrid} as well as their \code{data.frame} counterparts from the package \pkg{sp}.
 For spatio-temporal grouping predicates objects of the classes \code{STF} and \code{STFDF} from the package \pkg{spacetime} are accepted.
@@ -304,29 +146,19 @@ For spatio-temporal grouping predicates objects of the classes \code{STF} and \c
 Besides the implementation of methods for bidirectional coercion between objects of classes defined in the packages \pkg{move} \citep{kranstauber_move:_2014} and \pkg{adehabitatLT} \citep{calenge_adehabitatlt:_2014} and objects of classes defined in the package \pkg{trajectories} are provided.
 The classes from \pkg{move} and \pkg{adehabitatLT} are defined to represent animal trajectory data.
 Due to the coercion methods the aggregation functionality is provided to trajectory data stored in objects of the classes defined in the mentioned packages. And vice versa data stored in \pkg{trajectories} objects may be analysed by methods provided by these packages.  Moreover the coercion provides access to a large amount of data stored in the movebank database \citep{wikelski_movebank:_2011}. This data is provided by objects whose classes are defined in the package \pkg{move}.
-
-%Coercion methods provide the aggregation functionality to trajectories represented by objects of other classes. The \pkg{move} package provides access to a large amount of data stored in the movebank database \citep{wikelski_movebank:_2011}. Due to coercion these data may be aggregated and also analysed by the functionality of the packages \pkg{spacetime}, \pkg{sp}, and \pkg{xts}. The same applies to the substantial package \pkg{adehabitatLT} yet missing any aggregation method for \code{ltraj} objects. Coercion from \code{ltraj} objects to \code{STTDF} objects already exists \citep{pebesma_spacetime:_2012} but throws an error with the \code{ltraj} example data likely by cause of NA values. Bidirectional coercion may provide further functionality from \pkg{move} and \pkg{adehabitatLT}.
 \par\medskip
 
-% count
+% Count
 Finally, an aim is to provide methods for counting the number of trajectories over spatial and spatio-temporal grouping predicates. Such methods may be used to analyse the spatial or spatio-temporal distribution of trajectories and are especially suitable for trajectories without attributes or for trajectories whose attributes may not be aggregated in a meaningful way.
 \par\medskip
 
-%Abgrenzung
-As pointed out the focus of this thesis is about aggregation over area-measured spatial or spatio-temporal grouping predicates.
+As pointed out the focus of this implementation is about aggregation over area-measured spatial or spatio-temporal grouping predicates.
 It aims not for providing aggregation methods using temporal or cyclic temporal grouping predicates.
 Also the aggregation of trajectory data by attributes is not part of this work.
 Moreover an aggregation in terms of aggregating a set of trajectory points to a smaller set of points, what may be known as generalisation, is neither part of this work.
 And finally no methods to aggregate trajectories connections, which are bounding in each case two consecutive trajectory points, are implemented.
 \par\medskip
 
-%%%
-%Methodik
-%forschungsstand und luecken ???
-%datenbasis
-%why coercion
-
-% Consistence with over and agg from sp and spacetime
 Generally the implemented methods for overlay and aggregation are guided by the implementation of the methods for spatial and spatio-temporal overlay and aggregation defined in the packages \pkg{sp} and \pkg{spacetime}.
 Moreover the implemented methods are as far as possible consistent with the mentioned methods from \pkg{sp} and \pkg{spacetime} regarding to the methods' arguments and the data structure of the returned objects. The spatio-temporal overlay constitutes the basis of the aggregation methods.
 \par\medskip
@@ -335,49 +167,19 @@ Moreover the implemented methods are as far as possible consistent with the ment
 Regarding to the implementation itself all methods are defined by S4 generic functions and the entirety of the implemented methods as well as some example data from movebank are integrated in the \proglang{R} package \pkg{trajaggr}.  The package is developed with the current \proglang{R} version 3.1.2 (2014-10-31) \citep{r_development_core_team_r:_2014}. Even regarding to the coercion the methods are additionally defined by S4 generic functions, which enables an appropriate documentation as well as a comfortable usage.
 \par\medskip
 
-%%% Begriffsdefinitionen
-
-%%% Aufbau der Arbeit (mit bezug zum Ziel) Outline
-%Vorgehensweise
-%Angaben zur genutzten lit und quellen
-%welche methoiden werden genutzt
-%arbeitsschritte
-%wie werden thema und fragestellung bearbeitet
-%why count
-%\minisec{Aufbau, Methoden und Arbeitschritte}
-
-% Erarbeitung / Arbeitsschritte???
-
 %Outline
-This thesis is structured as follows: In Chapter~\ref{chap:stateoftheart} definitions for 'aggregation' and 'trajectory' are given and a review about the relevant literature and \proglang{R} packages is presented. In Chapter~\ref{chap:meaningful} theoretical issues and considerations related to trajectories and its meaningful aggregation are introduced and the theoretical basics about the chosen realization of the aggregation is presented. In Chapter~\ref{chap:exampledata} the example data sets, that are provided with the created \proglang{R} package \pkg{trajaggr} and that are used for illustration purposes are introduced. In Chapter~\ref{chap:coercion} the implemented coercion methods are presented and illustrated. In Chapter~\ref{chap:overandaggregate} the implemented methods are introduced and illustrated by applying them to the example data sets. The method \code{over} may be used for spatial and spatio-temporal overlay with \code{Track} objects. The method \code{count} may be used to count the number of trajectories, and the method \code{aggregate} performs spatial and spatio-temporal aggregations of objects of the classes \code{Track}, \code{Tracks} and \code{TracksCollection}. In Chapter~\ref{chap:discussion} the strengths and weaknesses of the implemented methods are discussed. In Chapter~\ref{chap:conclusions} the results are summarized and evaluated, and the Chapter~\ref{chap:outlook} presents an outlook regarding to the weaknesses of the implementation and the remaining challenges related to meaningful aggregation of trajectory data.
+This vignette is structured as follows: In Chapter~\ref{chap:stateoftheart} definitions for 'aggregation' and 'trajectory' are given and a review about the relevant literature and \proglang{R} packages is presented. In Chapter \ref{chap:meaningful} theoretical issues and considerations related to trajectories and its meaningful aggregation are introduced and the theoretical basics about the chosen realization of the aggregation is presented. In Chapter~\ref{chap:exampledata} the example data sets, that are provided with the created \proglang{R} package \pkg{trajaggr} and that are used for illustration purposes are introduced. In Chapter~\ref{chap:coercion} the implemented coercion methods are presented and illustrated. In Chapter~\ref{chap:overandaggregate} the implemented methods are introduced and illustrated by applying them to the example data sets. The method \code{over} may be used for spatial and spatio-temporal overlay with \code{Track} objects. The method \code{count} may be used to count the number of trajectories, and the method \code{aggregate} performs spatial and spatio-temporal aggregations of objects of the classes \code{Track}, \code{Tracks} and \code{TracksCollection}. In Chapter~\ref{chap:discussion} the strengths and weaknesses of the implemented methods are discussed. In Chapter~\ref{chap:conclusions} the results are summarized and evaluated, and the Chapter~\ref{chap:outlook} presents an outlook regarding to the weaknesses of the implementation and the remaining challenges related to meaningful aggregation of trajectory data.
 \par\medskip
-
-% einleitung und schlkussteil sollen zueinenader passen!!!
-
-% \begin{itemize}
-% \item TODO Text parts from the proposal need to be revised!!!
-% \item die w-fragen!!!
-% \item Research questions
-% \item why coercion
-% \item why count
-% \item Abgrenzung / differentiation of aggregation approach
-% \item Outline / Aufbau der Arbeit
-% \item ...
-% \end{itemize}
-% \par\medskip
-
-
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% LitReview %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%\SweaveInput{LitReview/LitReview.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/LitReview/LitReview.Rnw}
 
 \chapter{State of the Art}
 \label{chap:stateoftheart}
+
 %=====================================================================
 % DEFINITIONS
 %---------------------------------------------------------------------
@@ -387,11 +189,10 @@ This thesis is structured as follows: In Chapter~\ref{chap:stateoftheart} defini
 \subsection*{Aggregation}
 
 Data aggregation is a process deriving new data references, in which groups considered as wholes are created out of multiple original references \citep{andrienko2006exploratory}. The authors point out that there are numerous different techniques for data aggregation.
-%Andrienko Buch:  By data aggreation generally new data references are derived, whereat groups considered as %wholes are created out of multiple original references. There are numerous techniques for data aggregation.
 \par\medskip
+
 \citet{stasch_meaningful_2014} define spatio-temporal aggregation as a process of grouping observations relative to spatial regions and/or temporal intervals, based on a spatial and/or temporal grouping predicate, with a subsequent calculation of statistical measures on the observed values in these groups of observations by applying an aggregation function.
 The spatial regions and/or temporal intervals on which the groups are built represent the support of the aggregated values and indicate the change of support, which is typical for data aggregation.
-% and which corresponds to the term 'new data reference' from the statement of (cite Andrienko)
 \par\medskip
 
 \subsection*{Trajectories}
@@ -404,7 +205,6 @@ In conjunction with movement data in the two dimensional space this function bec
 
 Similarly but extended by attribute data trajectories are defined by \citet{stasch_meaningful_2014} as 'mappings from discrete objects and times to spatial locations', in which attribute data may be attached to the spatial locations.
 \par\medskip
-
 
 
 %=====================================================================
@@ -430,21 +230,10 @@ There is just a very little further literature that explicitly examines the mean
 As examples of studies whose analyses are based on the aggregation of trajectory data one my refer to the studies from \citet{d2013participatory} and from \citet{elen2012aeroflex}. In the context of the latter study the authors used an appropriate measurement plan containing repeated measurements to guarantee a meaningful aggregation result. Moreover they stated that it is challenging to aggregate data in a meaningful way when the data is collected in an unstructured way.
 
 
-
-
-%copyof subtext with better biblatex refmarks for bibliography
-%Aggregation is a meaningful process for grouping large data sets \citep{Goldstein1994}. Common are spatial and temporal aggregates \citep{Fredrikson1999}. Raster-based spatial and spatio-temporal aggregation are proposed for trajectories \citep{Meratnia2002}, which are widely spread. With e.g. GPS sensors a large amount of spatio-temporal data is generated. 
-%Due to this aggregation is helpful for exploration and reduction of trajectory data \citep{andrienko_exploratory_2003, giannotti_trajectory_2007, andrienko_spatial_2011}.
-
-
 %=====================================================================
 % SOFTWARE REVIEW
 %---------------------------------------------------------------------
-%\section{Software review - Aggregation and trajectory data in \proglang{R}}
 \section{\proglang{R} packages}
-
-%[TODO comment xxx: I assume all the classes have been briefly introduced at some point? (paragraph above)]: %Solution --> Lit chapter!?
-%\par\medskip
 
 The \proglang{R} software for statistical computing \citep{r_development_core_team_r:_2014} as an open source and widely used software environment provides rich packages that support handling and aggregation of spatial or temporal data (\pkg{sp} \citep{pebesma_sp:_2014}, \pkg{raster} \citep{hijmans_raster:_2014}, \pkg{zoo} \citep{zeileis_zoo:_2014} and \pkg{xts} \citep{ryan_xts:_2014}).
 Additionally the package \pkg{spacetime} \citep{pebesma_spacetime:_2012} provides a first approach to fill the gap in the lack of suitable software solutions to analyse spatio-temporal data (\citet{schabenberger_statistical_2004} in \citet{pebesma_spacetime:_2012}). 
@@ -486,20 +275,13 @@ Relative to the domains of space and time the classes representing trajectory da
 
 %\minisec{Compare trajectories to spacetime}
 Moreover \pkg{trajectories} classes are more \textit{powerful} in comparison to the class \code{STTDF} defined in \pkg{spacetime} because it provides the \code{connections} slot and the three classes introduced above. Improved are the representation and distinction of points and connections, as well as the ability to combine and to distinguish different trajectories of one individual (\code{Tracks}) and distinguish sets of trajectories of different individuals (\code{TracksCollection}). As yet just one aggregation method has been implemented which aggregates the trajectory points over space. 
-%In view of this characteristics it is self-evident and useful to implement the desired aggregation functionality as an extension to the package \pkg{trajectories}.
 \par\medskip
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Meaningful %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{Meaningful/Meaningful.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Meaningful/Meaningful.Rnw}
 
-%\chapter{Is aggregation of trajectory data meaningful?}
 \chapter{Meaningfulness related to aggregation of trajectory data}
 \label{chap:meaningful}
 
@@ -508,48 +290,28 @@ This Chapter is divided into two sections.
 The first section explains which criteria are relevant related to a meaningful aggregation of trajectory data. 
 The second section describes how some challenges derived from the criteria presented in the first Section are addressed.
 
-
-%\section{Introduction - Impacts on the Question of Meaningfulness}
-%\section{Impacts on the Question of Meaningfulness}
-%\section{Issues about meaningful aggregation of trajectory data}
 \section{Issues about meaningful aggregation of trajectories}
 \label{sec:meaningfulissues}
 
 %\minisec{Section Intro: Issues related to aggregation of trajectory data}
-The meaningfulness of aggregation of trajectory data depends on several criteria. The following list gives an overview and in the subsequent paragraphs these items are explained and discussed in detail. Important criteria are: % These criteria include 
+The meaningfulness of aggregation of trajectory data depends on several criteria. The following list gives an overview and in the subsequent paragraphs these items are explained and discussed in detail. Important criteria are:
 
 \begin{itemize}
-%grouping predicate
-\item the domains (space and/or time) represented by the grouping predicate, % grouping predicate
-%feature correspondence
+\item the domains (space and/or time) represented by the grouping predicate, 
 \item the target features whose data should be aggregated (points or segments) 
-%scales
-\item the measurement scales of the attributes to be aggregated, % data types
-%agg Fct
+\item the measurement scales of the attributes to be aggregated, 
 \item the choice of the aggregation function to be applied, 
-%sampling rate
 \item the sampling rate of the trajectory data and its variability, 
-\item the handling of irregular sampling rates (within one track) % or between) or of different
+\item the handling of irregular sampling rates (within one track) 
 \item the approach to aggregate data (of several tracks) based on different sampling rates
-%attr Data
-\item the units of the attribute data (if having a spatial or temporal reference),  % attribute units
-%variability of attr data
-\item the variability of the attribute data,
-%\item (and so on ...!?!? xxx).
+\item the units of the attribute data (if having a spatial or temporal reference),  
+\item the variability of the attribute data.
 \end{itemize}
-
-
-
-%\minisec{Challanges related to traj data --> Meaningful Section !?}
-%The challenge related to trajectory data is based on the fact, ...
-%\par\medskip
-%The above listed criteria will be explained and discussed in detail in the following section / paragraphs / xxx.
 
 \par\medskip
 
 
 \minisec{Grouping predicates}
-
 Generally due to the spatio-temporal characteristic of trajectory data an aggregation process needs to respect the spatial as well as the temporal domain. 
 In a meaningful aggregation one needs to keep the temporal and spatial information of the trajectory data. Due to the grouping predicate the temporal and/or spatial support of the (aggregated) data changes.
 If the grouping predicate is based on spatio-temporal geometries the spatio-temporal support of the aggregated values is equivalent to these spatio-temporal geometries.
@@ -606,10 +368,8 @@ The usage of functions calculating a summary value considering several measureme
 
 \minisec{Sampling rate frequencies}
 
-%to assumptions!?!
 Generally it is desirable that the temporal (or spatial) frequency of the sampling rate should be high enough such that the time intervals (or distances) between two consecutive measurement points are smaller than the time intervals (or spatial extents) characterizing the spatio-temporal geometries of the grouping predicate.
 That guarantees (at least for the temporal domain) that each spatio-temporal geometry intersected by the path of the track is (temporally) matched by at least one measurement point.
-%assumption
 \par\medskip
 The aim of data aggregation is to calculate one representative value for an attribute out of a set of values of that attribute for each unit of the grouping predicate.
 An important point is the variability of the frequency of the sampling rate especially if an aggregation function like \textit{mean}, that calculates a new value considering several measurement values, is used. 
@@ -660,40 +420,18 @@ When aggregating attribute data with a spatial reference the distance assigned t
 \par\medskip
 
 
-
 \minisec{Data variability}
 Moreover the variability of the data to be aggregated has an impact on the meaningfulness of aggregation in general. An aggregation result of a highly variable attribute need to be interpreted with caution as long as the frequency of the sampling rate is not high enough to catch the variability of the attribute.
 \par\medskip
 
 
-% ...type of values - Stevens measurement scales: aggregation of non-metric variables is not possible / difficult; data types: int, num, logical, char, factor, ...?;
-% ...weighting of measurements if mean is the desired aggregation function, including different weighting approaches due to measurements of parameters relatively to a temporal or spatial reference, e.g. like fuel consumption in l/h or l/km, or heart rate in beats/min.
-% ...aggregation of data from severeal trajectories with respect of different sampling rates which implies the need of weighting in the case of mean as the desired aggregation function FUN.
 
-% \minisec{...}
-% ? ...the variability of the attribute data over time --> no information about the attribute values between distict measurements --> a low variability ...erlaubt... the weighting of measuremnts, a high variability is problematic! ? \\ weighting assumes a relatively low variability in the measured attributes, extreme examples are high variability in Rpm (besides the dependence of the Rpm value from  the current speed each change of current gear leads to a fast and extreme change of attribute value) and low variability in body or "Intake Temperature" (because temperature does not change fast over time)
-% [...different speed of entities / individuals
-%   --> higher speed --> less sampling points in given spatio-temporal unit --> how to respect that in aggregation? --> ...weighting, see above!]
-
-
-
-
-
-%\section{The choosen underlying approach}
-%\section{Realization considering issues about meaningfulness}
 \section{Meaningful realization of aggregation}
 \label{sec:meaningfulrealization}
 
 This section describes how the challenges mainly derived from the criteria related to a trajectories sampling rate presented in Section~\ref{sec:meaningfulissues} are generally addressed by the approach of meaningful aggregation presented in this work.
 The aggregation approach is based on a core assumption related to the trajectories sampling rates which is also explained in this Section.
-%presented in the first paragraph.
 \par\medskip
-
-% \minisec{Assumption related to sampling rates}
-% Generally it is assumed that the sampling rate of trajectories, which may be based on time or distance, is relatively high related to the time intervals or spatial extents of the grouping predicate. 
-% For instance a track sampling rate of one measurement per hour and a spatio-temporal grouping predicate with time intervals of 10 minutes would not meet that assumption. 
-% As a general rule related to time based sampling rates one may define that the sampling rate time intervals should at least be smaller than the time intervals defined in the spatio-temporal grouping predicate. 
-% \par\medskip
 
 
 \minisec{Assigning duration and distance to track points}
@@ -721,10 +459,6 @@ Consequential the assumption allows an adequate estimation of the duration and d
 Finally these estimated values about duration and distance of the segments parts may be used to calculate the values of duration and distance which will be assigned to the corresponding track points.
 \par\medskip
 
-% The higher the frequency of the sampling rate the smaller the possible error in the weighted aggregation. The possible error is based on the fact that the current implementation of the weighting process does not investigate the exact duration and distance corresponding to \code{Track} points (or parts of the \code{Track} object) whose connection to the prior or subsequent \code{Track} point (or part) intersects the spatial or temporal border of a spatio-temporal geometry.
-% Distance and duration of those \code{Track} points are estimated by assigning ...
-% %the halved value of the \code{duration} or \code{distance} attribute from the \code{connections} slot measured for the other / second xxx connection corresponding to that Track point.
-%\par\medskip
 
 \minisec{Usage of assigned spatio-temporal information}
 In the above paragraphs it is explained how information about duration and distance of segments is assigned in a meaningful manner to trajectory points to combine these spatio-temporal information with data corresponding to these trajectory points. This assigned spatio-temporal information is used in several ways.
@@ -741,18 +475,13 @@ Generally this work just contains aggregation approaches which aggregate point d
 An aggregation using the aggregation function \textit{sum}, which is typically not meaningful relative to trajectory aggregation, as it is described in Section~\ref{sec:meaningfulissues}, will be attended with a warning message.
 
 
-
-
-
 %\part{Practical part}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ExData and Coercion %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% ExData_and_Coercion %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{ExData_and_Coercion/ExData_and_Coercion.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/ExData_and_Coercion/ExData_and_Coercion.Rnw}
 
 %=====================================================================
 %=====================================================================
@@ -763,8 +492,7 @@ An aggregation using the aggregation function \textit{sum}, which is typically n
 %---------------------------------------------------------------------
 \chapter{Example Data}
 \label{chap:exampledata}
-% 3 resp. 5 move data sets
-% 1 ltraj data set
+
 There are several example data sets provided with this package. 
 Three data sets contain \pkg{move} objects from the movebank database \citep{wikelski_movebank:_2011}, and one data set contains an object of class \code{ltraj} defined in the package \pkg{adehabitatLT}. 
 Additionally some artificial toy data containing objects whose classes are defined in \pkg{trajectories} as well as other spatial and spatio-temporal objects are provided (but not documented). 
@@ -788,7 +516,7 @@ For a detailed inspection of the two objects from the toy data set that are used
 The toy data set may be loaded by:
 \par\medskip
 
-% Load data - temporally solution... ??? !!! (How to load data for vignette???)
+% Load data
 \begin{small}
 <<load_TestData, eval=FALSE, echo=TRUE>>=
 load(system.file("extdata","trajaggr_TestData.RData", 
@@ -798,7 +526,6 @@ load(system.file("extdata","trajaggr_TestData.RData",
 
 \par\medskip
 
-%In the Section \ref{sec:exampledatamovebank} the example data from movebank is introduced, and in Section \ref{sec:exampledataadehabitat} the example data from the package \pkg{adehabitatLT} is presented.
 
 
 %=====================================================================
@@ -827,15 +554,16 @@ The vultures were tracked in Namibia, in which this data subset covers a 14~days
 options(width=60)
 @
 
-% Load required packages
-\begin{small}
-<<exampledata_load_pkgs, eval=TRUE, echo=FALSE>>=
-#library(sp)
-#library(spacetime)
-#library(trajectories)
-#library(trajaggr)
-@
-\end{small}
+%' % Load required packages
+%' \begin{small}
+%' <<exampledata_load_pkgs, eval=TRUE, echo=FALSE>>=
+%' #library(sp)
+%' #library(spacetime)
+%' #library(trajectories)
+%' #library(trajaggr)
+%' @
+%' \end{small}
+
 
 \begin{small}
 <<exampledata_vulture_movestack_inspect1, eval=TRUE, echo=TRUE>>=
@@ -856,7 +584,6 @@ Due to the number of individuals and the characteristic of the data sampling thi
 The permission to use the data was obtained from the owners of the data (Orr Spiegel).
 Further information about the data set may be obtained by \code{?vulture\_moveStack}.
 \par\medskip
-
 
 %%%%%%%%
 
@@ -898,9 +625,6 @@ Further information about the data set may be obtained by the commands \code{?pi
 \section{Example data from the \proglang{R} package \pkg{adehabitatLT}}
 \label{sec:exampledataadehabitat}
 
-%adehabitatLT and Namespace --> explain here or ... ? Where??? Nowhere!
-%\minisec{Example data set \codeintitles{wildboars\_4Ind\_ltraj}}
-
 The package \pkg{trajaggr} contains one example data set of class \code{ltraj}, that is defined in the package \pkg{adehabitatLT}. The data set is stored in an object called \code{wildboars\_4Ind\_ltraj}.
 \par\medskip
 
@@ -926,77 +650,6 @@ adehabitatLT::summary.ltraj(wildboars_4Ind_ltraj)
 The \code{wildboars\_4Ind\_ltraj} data is just used for illustration of the methods that are implemented for coercion of objects of class \code{ltraj} to objects defined in \pkg{trajectories}.
 The package \pkg{adehabitatLT} provides a lot of further example data sets.
 \par\medskip
-
-
-%%
-%\begin{itemize}
-%\item name/details of study/citation
-%\item citation / bibtex
-
-%\item subset
-
-%\item objects names
-%\item objects nr
-%\item objects class!!!,
-%\item ...sampling rate, location, point locations
-%\item available attributes !!!!
-
-%\item load
-%\item illustration / little inspection (just if relevant!?)
-
-%\item erlaubnis
-%\item further details please see the package documentation --> ?!?
-
-%\item preparation !?!
-%\end{itemize}
-%%
-
-
-% The \code{wildboars\_4Ind\_ltraj} data set is a renamed copy of the \code{puechcirc} data set provided by the package \pkg{adehabitatLT}. 
-% It is an object of class \code{ltraj} and contains three tracks / bursts of two wild boars tracked in 1993 in the south of France.
-% 
-% Data contains no NA...!
-
-% \begin{small}
-% <<exampledata_wildboars_load, eval=TRUE, echo=TRUE>>=
-% data(wildboars_4Ind_ltraj) # loads data
-% class(wildboars_4Ind_ltraj)
-% # summary(wildboars_4Ind_ltraj) 
-% # requires adehabitatLT for appropriate output
-% if (requireNamespace("adehabitatLT", quietly = TRUE)) {
-%   adehabitatLT::summary.ltraj(wildboars_4Ind_ltraj)
-% } else {
-%   sapply(wildboars_4Ind_ltraj, function(x) attr(x, "id"))    # IDs
-%   sapply(wildboars_4Ind_ltraj, function(x) attr(x, "burst")) # bursts
-%   sapply(wildboars_4Ind_ltraj, nrow)                         # relocations
-%   # Bursts containing NA values in (x) coordinates?
-%   sapply(wildboars_4Ind_ltraj, function(z) any(is.na(z$x)))  # NA in coords
-% }
-% @
-% \end{small}
-% 
-% \par\medskip
-
-
-% \begin{itemize}
-% \item objects: nr, class, sampling rate, location
-% \item further details please see the package documentation --> ?!?
-% \end{itemize}
-
-% \minisec{Example data set 'roedeer\_ltraj'}
-% 
-% \begin{itemize}
-% \item name/details of data set
-% \item subset
-% \item objects: nr, class, sampling rate, location
-% \item load
-% \item erlaubnis
-% \item citation / bibtex
-% \item further details please see the package documentation --> ?!?
-% \end{itemize}
-% 
-% TODO What about wildboars\_2Ind ... see documentation
-
 
 In the following Chapter \ref{chap:coercion} the implemented coercion methods are introduced and illustrated by being applied to the example data presented in this chapter.
 
@@ -1187,7 +840,6 @@ In this case the additional \code{burst} category 'undefined' is neither needed 
 
 The coercion of \pkg{trajectories} objects to \pkg{move} objects is illustrated by the following commands coercing \code{Tracks} to \code{MoveStack} and \code{MoveBurst} objects as well as coercing a \code{TracksCollection} to a \code{MoveStack}. As input the \pkg{trajectories} objects created in Subsection \ref{subsec:coercemovetotraj} are used. The coercion is further validated in Appendix \ref{sec:validtrajtomovecoercion} by comparing the newly created \pkg{move} objects with the original \pkg{move} objects used as input for the coercion presented in Subsection~\ref{subsec:coercemovetotraj}.
 
-%sec:validtrajtomovecoercion
 
 \begin{small}
 <<coercion_tomove_part_1, eval=TRUE, echo=TRUE>>=
@@ -1320,14 +972,6 @@ In the following subsection the coercion of \pkg{trajectories} objects to object
 Generally there are no further limitations in coercing \pkg{trajectories} objects to \code{ltraj} objects, but the package \pkg{adehabitatLT} is required in all cases.
 The following commands illustrate the coercion to \code{ltraj} objects by coercing the above created \pkg{trajectories} objects back to objects of class \code{ltraj}. Further validation of the coercion may be found in Appendix~\ref{sec:validtrajtoltrajcoercion}.
 
-%sec:validtrajtoltrajcoercion
-
-% \begin{itemize}
-% \item data slot -- > infolocs
-% \item rownames von infolocs und 'data' muessen gleich sein
-% \item to Tracks / TracksColl: burstNames werden neu gesetzt wenn nicht eindeutig! muessen in ltraj nicht eindeutig sein bzw. koennen sich wiedferholen ??? wirklich ???
-% \end{itemize}
-
 \par\medskip
 
 \begin{small}
@@ -1352,12 +996,9 @@ Aside from the mentioned limitations the output of the last command and the vali
 
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Aggregation %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{Aggregation/Aggregation.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Aggregation/Aggregation.Rnw}
 
 <<echo=false>>=
 options(width=60)
@@ -1382,33 +1023,6 @@ In the last Section of this Chapter the method \code{aggregate} is introduced an
 For illustration the method is applied to the example data objects \code{vulture\_moveStack}, \code{pigeon\_R\_moveSt\_sub} and \code{pigeon\_R\_moveSt\_sub}.
 \par\medskip
 
-%%%
-
-
-
-%\par\medskip
-
-% Keywords
-% \begin{itemize}
-% \item{metadata}
-% \item{weighting}
-% \item{Filling missing attributes}
-% \item{use.data, because all Track objects have a data slot by definition}
-% \item{over(sp, ...) --> 2 possible approaches --> the one I have choosen}
-% \item{agg(x, sp, ...) --> same 2 possible approaches like with over --> ...}
-% \item ...
-% \item{consecutive points}
-% \item{points connected by connections}
-% \item{one track: sampling rate}
-% \item{several tracks: length / duration}
-% \item{over(sp, ...) --> 2 possible approaches}
-% \item{agg(x, sp, ...) --> same 2 possible approaches like with over}
-% \item{--> check meaningful paper}
-% \item{--> check other papers e.g. Andrienko}
-% \end{itemize}
-%\par\medskip
-
-%%%
 
 \section{General aspects}
 \label{sec:generalaspects}
@@ -1424,17 +1038,13 @@ a short introduction about the basic implementation approaches according to the 
 Assumptions, that are (further) made related to the \pkg{trajectories} objects passed to the implemented methods, are introduced in the following paragraph.
 \par\medskip
 
-% DROPPED !!!:  Prerequisites / Assumptions as SECTION
+
 \minisec{Assumptions}
 The implemented aggregation functionality is based on some core assumptions. We act on the assumption that the sampling rate of the \pkg{trajectories} objects is relatively high related to the time intervals or spatial extents of the grouping predicate. This assumption is introduced and motivated in detail in Section \ref{sec:meaningfulrealization}.
 \par\medskip
 Moreover it is generally assumed that the time reference of all \code{Track} objects that are themselves part of a \code{Tracks} or \code{TracksCollection} object is based on the same time zone.
 This assumption is not (yet) a requirement related to the classes defined in \pkg{trajectories}.
 \par\medskip
-% Moreover it is generally assumed that all \code{Track} objects which are itself part of a \code{Tracks} or \code{TracksCollection} object are based on the same coordinate reference system as well as that their time reference is based on the same time zone.
-% These assumptions are not (yet) requirements related to the classes defined in \pkg{trajectories}.
-% \par\medskip
-
 
 
 \minisec{Selection of attribute data}
@@ -1477,9 +1087,6 @@ In the proximate step a weighted aggregation of the aggregation results from the
 To allow moreover a weighted aggregation of \code{Tracks} or \code{TracksCollection} objects in which weighting is limited to either just passing weights related to \code{Track} points or just passing weights related to \code{Track} \textit{parts} also the \code{character} string 'equal' may be passed to the arguments \code{weight.points} and \code{weight.tracks}. The string 'equal' indicates no weighting.
 \par\medskip
 
-%???
-%Further details about the weights calculation and the weighting process will be explained in the corresponding sections.
-
 
 \minisec{Applying aggregation functions individually}
 When applying the methods \code{count} and \code{aggregate} to objects of class \code{TracksCollection} an additional argument named \code{byID} may be specified. 
@@ -1514,9 +1121,6 @@ For the method \code{count} the implementation approach is kept simple and in ca
 %=====================================================================
 % OVER
 %---------------------------------------------------------------------
-%\section{Spatio-temporal overlay}
-%\section{Spatio-temporal overlay of \codeintitles{STF} and \codeintitles{Track} objects}
-%\section{\codeintitles{over} - Overlay to retrieve information from \codeintitles{Track} objects}
 \section{\codeintitles{over} - Overlay with \codeintitles{Track} objects}
 \label{sec:overlaywithtrackobjects}
 
@@ -1535,12 +1139,10 @@ showMethods(over, classes = c("Track", "Tracks", "TracksCollection"))
 
 The output shows all available \code{over} methods related to the \pkg{trajectories} classes whereas the exported \code{over} methods from \pkg{trajaggr} are those whose signatures are characterized by \code{y="Track"}. 
 Overlays for objects of class \code{STF} and for objects inheriting from class \code{Spatial} (\code{SpatialPolygons}, \code{SpatialGrid} and \code{SpatialPixels}) with objects of class \code{Track} are implemented.
-%In the further following subsections these newly implemented \code{over} methods are introduced in detail.
 \par\medskip
 
 %\minisec{New over methods intro}
 Generally the implemented \code{over} methods for spatial and spatio-temporal overlay are geared to the \code{over} methods implemented in \pkg{sp} and \pkg{spacetime} related to the arguments and the returned data structures. 
-%Both \code{over}
 The methods respect the spatial and temporal domain of the \code{Track} object which will cause a consideration of the time domain even if an overlay of a \code{Spatial} object with a \code{Track} object is performed. 
 \par\medskip
 
@@ -1549,7 +1151,6 @@ Besides the arguments used by \code{over} implemented in \pkg{sp} and \pkg{space
 are using the two further arguments \code{use.data} and \code{weight.points} which are introduced in Section \ref{sec:generalaspects}.
 \par\medskip
 
-% Hier weiter checken ... xxx TODO
 
 %\minisec{Length of over return}
 In general over(x, y) returns an object whose length equals \code{length(x)} if \code{x} is of or inherits from class \code{STF} or whose length equals \code{length(x) * length(y)} if \code{x} is of one of the classes mentioned above which inherit from class \code{Spatial} and all points from \code{y} are intersecting \code{x}.
@@ -1559,7 +1160,7 @@ In general over(x, y) returns an object whose length equals \code{length(x)} if 
 For illustration of the \code{over} methods the small artificial toy data set is used, which easily allows to understand and verify the results of the implemented methods. 
 For more details about that data set see Chapter \ref{chap:exampledata}. One may load that data set by:
 
-% Load data - temporally solution... ??? !!! (How to load data for vignette???)
+% Load data
 \begin{small}
 <<load_TestData, eval=TRUE, echo=TRUE>>=
 load(system.file("extdata","trajaggr_TestData.RData", 
@@ -1596,7 +1197,6 @@ Figure \ref{fig:tracka1pointsandpolygons} shows a visual (pure) spatial 'overlay
 TA1 <- Track_A1 # sic
 TA1@data$Point_Nr <- as.factor(seq(1:length(TA1)))
 
-#pie(rep(1,6), col=gray((8:0/8)[2:7]))
 mycol <- gray((8:0/8)[2:7])
 
 spPolygons <- list("sp.polygons", stf_Polys_4t@sp, col = mycol[length(mycol)], cex=1.5) 
@@ -1613,19 +1213,6 @@ sp::spplot(as(TA1, "SpatialPointsDataFrame"), zcol="Point_Nr", key.space = "righ
 \label{fig:tracka1pointsandpolygons}
 \end{figure}
 
-% \begin{center}
-% <<over_stf_inspect_byFig2, eval=TRUE, echo=FALSE, fig=TRUE>>=
-% TA1 <- Track_A1 # sic
-% TA1@data$Point_Nr <- as.factor(seq(1:length(TA1)))
-% A1_spL <- as(TA1, "SpatialLines")
-% A1_spdf <- as(TA1, "SpatialPointsDataFrame")
-% plot(stf_Polys_4t@sp, axes = TRUE, main = "Track points (Track_A1@sp) and Polygons (stf_Polys_4t@sp)")
-% plot(A1_spL, type="l", add=TRUE)
-% plot(A1_spdf, type="p", add=TRUE, pch = 1)
-% text(A1_spdf, row.names(A1_spdf), cex=0.8, pos=4)
-% @
-% \end{center}
-
 \par\medskip
 
 In the Subsection~\ref{subsec:overlayofstf} the usage and the results of the \code{over} method for spatio-temporal overlay of \code{STF} and \code{Track} objects are presented using the introduced toy data objects as input.
@@ -1634,13 +1221,11 @@ In the Subsection~\ref{subsec:overlayofstf} the usage and the results of the \co
 %---------------------------------------------------------------------
 % Spatio-temporal overlay of STF and Track objects
 %---------------------------------------------------------------------
-%\subsection{Spatio-temporal overlay of \codeintitles{STF} and \codeintitles{Track} objects}
 \subsection{Overlay of \codeintitles{STF} and \codeintitles{Track} objects}
 \label{subsec:overlayofstf}
 
 %\minisec{First over call}
 The spatio-temporal overlay of \code{STF} and \code{Track} objects performed by the method \code{over} returns \code{Track} point indices or (aggregated) \code{Track} attribute data for each spatio-temporal geometry of the \code{STF} object.
-%Now we are 
 Calling the method \code{over} with the argument \code{returnList = FALSE} returns a \code{vector} of length \code{length(x)} with \code{Track} point indices:
 
 \begin{small}
@@ -1734,23 +1319,13 @@ For instance the weighted mean for the first spatio-temporal geometry is calcula
 Correspondingly the weighted mean for the third spatio-temporal geometry, which is intersected by the first two \code {Track} points, is smaller than the unweighted mean, because the smaller \code{co2} value of the second \code{Track} point gets the higher weight. 
 There are no effects on the values for the sixth and eighth spatio-temporal geometry due to the fact that in each case just one \code{Track} point intersects these geometries, and as well there are no effects on the returned metadata, which is independent from the weighting procedure. 
 
-%accepted weighted aggregation functions
-
 
 %---------------------------------------------------------------------
 % Overlay of Spatial and Track objects
-%\subsection{Spatio-temporal overlay of Spatial and Track objects}
-%\subsection{Spatio-temporal overlay of \codeintitles{Spatial} and \codeintitles{Track} objects}
 \subsection{Overlay of \codeintitles{Spatial} and \codeintitles{Track} objects}
 \label{subsec:overlayofspatial}
-% TODO: 2 moegliche Heranagehensweisen an over(sp, ...);
-% length of returned object (oben noch falsch --> abhaengig von matching points)
-% this over method is implemented to be consistent with the aggregate method
-% the aggregate method is mainly interesting for Track objects with synchronous sampling rates respectively identical timestamps
-% ...
 
-% DESCRIPTION how this over works !?!
-
+% DESCRIPTION how this over works ...
 Due to the implementation approach of the method \code{over} for objects inheriting from class \code{Spatial} and \code{Track} objects, whose general aspects are explained in Section \ref{sec:generalaspects} in the paragraphs about the methods' grouping predicate, each element (or possibly row) of the returned data structure (\code{vector}, \code{list} or \code{data.frame}) contains the index or data of at most one \code{Track} point.
 \par\medskip
 Thus for all cases of spatial intersection of the \code{Track} points with the \code{Spatial} object calls of the method \code{over} with \code{returnList = TRUE} return the \textit{same} data (indices or attribute values) as calls with \code{returnList = FALSE}, whereas in the former case the data is returned as a \code{list} (possibly of \code{data.frame} objects) instead of a \code{vector} or \code{data.frame}.
@@ -1758,7 +1333,6 @@ Thus for all cases of spatial intersection of the \code{Track} points with the \
 Moreover the \code{length} of the returned object depends on the number of \code{Track} points intersecting the \code{Spatial} object. If all points intersect the \code{Spatial} object the length of the returned object is \code{length(x)} * \code{length(y)}.
 \par\medskip
 These described characteristics will be illustrated by the following commands applying the \code{over} method with \code{use.data = FALSE}, which will cause the return of \code{Track} point indices:
-% MUELL: correspondent to the theoretical relevant spatio-temporal geoemtries ( xxx of those \code{Track} points which correspond to the spatio-temporal geoemtries (of the theoretical \code{STFDF}) xxx):
 
 \begin{small}
 <<over_sp_inspect_over1, eval=TRUE, echo=TRUE>>=
@@ -1855,7 +1429,6 @@ The second call of \code{over} with specifying the argument \code{fn} (in any ca
 This also applies in all calls of the method \code{over} with a \textit{positive} \code{use.data} argument, \code{returnList = FALSE}, and a specified \code{fn} argument. 
 \par\medskip
 If the \code{Spatial} object passed to the argument \code{x} is of length one, like in the last presented commands, a time series object, in particular an \code{xts} object, which reflects the \code{Track} points intersecting the \code{Spatial} geometry as time instances may easily be created by the following command block:
-%calling the \code{xts} method:
 
 \begin{small}
 <<over_sp_inspect_over2xts, eval=TRUE, echo=TRUE>>=
@@ -1875,7 +1448,6 @@ xts_obj
 
 %---------------------------------------------------------------------
 % Overlay of Spatial and Track objects ignoring the time domain
-%\subsection{Spatio-temporal overlay of Spatial and Track objects with droppinng time domain}
 \subsection[Overlay of \codeintitles{Spatial} and \codeintitles{Track} objects ignoring time domain]{Overlay of \codeintitles{Spatial} and \codeintitles{Track} objects ignoring time domain}
 \label{subsec:overlayofspatialigntime}
 
@@ -1933,7 +1505,6 @@ In the following Section the \code{count} methods, which may be used to count th
 %=====================================================================
 % COUNT
 %---------------------------------------------------------------------
-%\section{\codeintitles{count} - Spatial and spatio-temporal counting of \pkg{trajectories} objects}
 \section{\codeintitles{count} - Counting of trajectories}
 \label{sec:count}
 
@@ -1958,18 +1529,17 @@ The count result is stored as an attribute called \code{ntraj} in the \code{data
 
 The illustration of the \code{count} methods is based on the \code{vulture\_moveStack} data set. For further information about that data set consult Chapter \ref{chap:exampledata} or run \code{?vulture\_moveStack}. Before the \code{vulture\_moveStack} object may be coerced to a suitable structured \code{TracksCollection} object some preparation is needed which is motivated and illustrated in conjunction with the coercion in Appendix \ref{sec:prepvulturemovestackforcount}.
 The results of the example calls of the method \code{count} are illustrated by plots. 
-%The following subsection describes some necessary preparation xxx of the \code{vulture\_moveStack} data including coercion and restructuring of the data.
 
 \par\medskip
 
 The Subsection \ref{subsec:countoverspatial} presents the application of the  method \code{count} with objects inheriting from class \code{Spatial} passed to the \code{by} argument.
-%For the \code{x} argument \code{Tracks} and \code{TracksCollection} objects created from the \code{vulture\_moveStack} data set are used.
 The Subsection \ref{subsec:countoverstf} presents the counting over \code{STF} objects.
 \par\medskip
 
 
 % %---------------------------------------------------------------------
 % % Preparation of vulture\_moveStack example data 
+% % Just eval, no echo !
 % \subsection{Preparation of vulture\_moveStack example data}
 % \label{subsec:prepvulturemovestackforcount}
 
@@ -2019,30 +1589,7 @@ vulture_TrC <- TracksCollection(list(Tracks_X1 = Tracks_X1,
 \end{small}
 %\par\medskip
 
-% # R code: creating spatial object to be passed to the by argument
-% # Creating Spatial and STF objects
-% # Calculate cellsize and dimension
-% xmin <- min(vulture_TrC@tracksCollectionData$xmin)
-% ymin <- min(vulture_TrC@tracksCollectionData$ymin)
-% 
-% ext <- c(diff(c(xmin, max(vulture_TrC@tracksCollectionData$xmax))),
-%          diff(c(ymin, max(vulture_TrC@tracksCollectionData$ymax))))
-% 
-% csize <- ext[which(ext == max(ext))]/10 # 10 is desired dim
-% dimX <- ceiling(ext[1]/csize) # delete + 1
-% dimY <- ceiling(ext[2]/csize) # delete + 1
-% 
-% # Create grid topolgy
-% gt <- GridTopology(c(xmin + csize/2, ymin + csize/2), c(csize,csize), 
-%                    c(dimX, dimY))
-% 
-% # Create SpatialGrid
-% spG <- SpatialGrid(gt, proj4string = Tracks_X1[1]@sp@proj4string)
-% # Use that spG!!! TODO...!
 
-%xxx We realize from the last output that the structure of the \code{TracksCollection} has changed and that (for instance) the first \code{Tracks} object from the \code{TracksCollection} now contains 14 \code{Track} objects instead of one.
-
-%chap:prepvulturemovestackforcount
 
 %---------------------------------------------------------------------
 % Counting over spatial objects
@@ -2051,8 +1598,6 @@ vulture_TrC <- TracksCollection(list(Tracks_X1 = Tracks_X1,
 
 In this subsection the method \code{count} with objects inheriting from class \code{Spatial} passed to the \code{by} argument is presented. To create such objects we use a simple function, that is introduced in Chapter \ref{chap:exampledata}. For the \code{x} argument objects of class \code{Tracks} and \code{TracksCollection} coerced from the \code{vulture\_moveStack} data set, whose preparation and coercion is illustrated in Appendix \ref{sec:prepvulturemovestackforcount}, are used.
 \par\medskip
-
-%Before the \code{vulture\_moveStack} object may be coerced to a suitable structured \code{TracksCollection} object some preparation is needed which is motivated and illustrated in conjunction with the coercion in Appendix \ref{chap:prepvulturemovestackforcount}.
 
 
 The method \code{count} applied to \code{Spatial} objects as the \code{by} argument returns an object whose class is a \code{data.frame} counterpart of the class of the object passed to the \code{by} argument if that is not yet an object of class \code{Spatial*DataFrame} (See also Section \ref{sec:generalaspects}.).
@@ -2063,8 +1608,8 @@ By the following commands a \code{SpatialGrid} object is created and the method 
 
 \par\medskip
 
-%Moreover we have to create \code{Spatial} and 
-%\code{STF} object on which the counting will be applied.
+
+%Moreover we have to create \code{Spatial} and \code{STF} object on which the counting will be applied...
 
 \begin{small}
 <<count_sp_vulture_TracksX1_count_1, eval=TRUE, echo=TRUE>>=
@@ -2149,49 +1694,13 @@ In the same way as the method \code{count} was applied in this subsection it  ma
 \par\medskip
 
 
-%\subsection{Counting \pkg{trajectories} objects over \codeintitles{STF} objects}
+% ----------------------------------------------------------------
 \subsection{Counting trajectories over \codeintitles{STF} objects}
 \label{subsec:countoverstf}
 
 For \code{by} arguments of class \code{STF} the method \code{count} works analogous to the above presented functionality whereas the returned object is of class \code{STFDF}. For each spatio-temporal geometry the number of intersecting \code{Track} objects is counted. For illustration we need a \code{STF} object which may be passed to the \code{by} argument. Such an object  will be created by first creating an object of class \code{Spatial} as described above and then creating an object of class \code{STF} out of the \code{Spatial} object adding the desired temporal data to the slots \code{time} and (optional) \code{endTime}.
 \par\medskip
 
-
-% 
-% <<count_stf_vulture_TrC_count_1, eval=TRUE, echo=TRUE>>=
-% spPix_TrC_dim15 <- createSpatialArealObjFromPoints(
-%   as(vulture_TrC, "SpatialPointsDataFrame"), 
-%   desDim = 15, out = "SpatialPixels")
-% stf_spPix_15sp_4t <- STF(spPix_TrC_dim15,
-%                          time = Tracks_X1[c(1,4,7,10)]@tracksData$tmin,
-%                          endTime = Tracks_X1[c(3,6,9,12)]@tracksData$tmax)
-% count_vultureTrC <- count(vulture_TrC, stf_spPix_15sp_4t)
-% @
-% 
-% \par\medskip
-% 
-% \begin{figure}[!htb]
-% \centering
-% <<count_stf_vultureTrC_fig_1, eval=TRUE, echo=FALSE, fig=TRUE>>=
-% obj <- count_vultureTrC
-% 
-% mx <- max(obj@data$ntraj, na.rm = TRUE)
-% mycol <- gray(((mx + 2):0/(mx + 2))[2:(mx+1)])
-% labelat = 1:mx
-% labeltext = as.character(1:mx)
-% mykey <- list(labels=list(at = labelat, labels = labeltext, cex = 1.1), 
-%               space="bottom", height = 0.6)
-% 
-% # stplot --> cuts different from spplot!
-% stplot(obj, main = NULL, colorkey = mykey, cuts = mx, col.regions = mycol,
-%        scales = list(draw = TRUE, tck = c(1,1), cex = 1, rot = 45),
-%        names.attr = c("2008-05-02", "2008-05-05", "2008-05-08", "2008-05-11"))
-% @
-% \caption{Description count over stf ...}
-% \label{fig:toro}
-% \end{figure}
-
-%\par\medskip
 
 The functionality of counting over a \code{STF} object will be presented on basis of the \code{Tracks} object \code{Tracks\_X3}.
 With the following commands first an object of class \code{SpatialPixels} is created which covers the extent of the \code{Tracks} object \code{Tracks\_X3}. Subsequent a \code{STF} object is created out of the \code{SpatialPixels} containing four time intervals with an equal length of 3 days covering the first 12 of the 14 tracked days from \code{Tracks\_X3}. With the last command the method \code{count} is called with the \code{Tracks} object \code{Tracks\_X3} and the recently created \code{STF} object.
@@ -2271,7 +1780,6 @@ Generally the implemented \code{aggregate} methods are geared to the \code{aggre
 Arguments known from the mentioned methods are \code{x} for the object whose data should be aggregated, \code{by} for the grouping predicate, \code{FUN} for the aggregation function and \code{simplify}.
 If \code{simplify} is specified as \code{TRUE} (default) it affects the return of the \code{aggregate} methods if the dimension of the temporal or spatial domain of the grouping predicate equals one.
 In such cases the returned object is \textit{simplified} by dropping the domain whose dimension equals one and in case of aggregation of \pkg{trajectories} objects the returned \textit{simplified} objects may be of class \code{Spatial}, if the temporal domain is dropped, or of class \code{xts}, if the spatial domain is dropped.
-%This argument is called \code{simplify} and it is also adopted from the \code{aggregate} methods for classes defined in \pkg{sp} and \code{spacetime}.
 \par\medskip
 
 Besides these arguments mentioned above the \code{aggregate} methods for \code{trajectories} objects are using further arguments depending of the class of the object passed to the \code{x} argument. In particular these further arguments are \code{use.data}, \code{weight.points}, \code{weight.tracks} and \code{byID} which are introduced in detail in Section \ref{sec:generalaspects}.
@@ -2286,11 +1794,6 @@ Spatio-temporal aggregation of \pkg{trajectories} objects over \code{STF} object
 The Subsection \ref{subsec:aggregationbysp} the aggregation with a \code{Spatial} grouping predicate applied to \pkg{trajectories} objects coerced from the pigeons' example data is presented.
 \par\medskip
 
-
-% Aggregation methods from \pkg{spacetime} will be extended to be applicable to objects of \pkg{trajectories} classes. Aggregation itself will be performed by aggregating a \code{ST*DF} object using \pkg{spacetime} methods. A \code{ST*DF} object contains either trajectory points or connections. For aggregation of a \code{Tracks} or \code{TracksCollection} object the \code{ST*DF} objects to be aggregated are created by combining several \code{ST*DF} objects, one for each trajectory. If aggregation of both, points and \code{connections}, are desired, the aggregations will be performed separately and the resulting objects may be combined as a \code{list} object, because if the \code{by} argument induces an aggregation at least over time, it seems not to be achievable to bind both aggregation results to one \code{Spatial*DataFrame} or \code{STFDF} object. To choose out of the mentioned options an additional argument (type = points | connections | both) will be passed to the aggregation function. This approach avoids an overhead of computation time xxx if just a result for points or connections is desired.
-% \par\medskip
-% A generic function converting \code{connections} to a \code{STIDF} object with \code{SpatialLines} in the \code{sp} slot will be provided to support \code{connections} aggregation. Optionally a weighted \code{connections} aggregation might be implemented (\code{FUN=mean}) which reduces the weights of connections belonging to more than one aggregate on the basis of length or duration. This weighted aggregation seems to be achievable just over one domain with dropping the other one and would be performed by calculating pre-weighted values. The weighted aggregation might be chosen by a function argument or by providing a generic function.
-% \par\medskip
 
 
 
@@ -2340,14 +1843,6 @@ class(agg_X1_stf_minHght)[1]
 agg_X1_stf_minHght@data[474:477, ]
 @
 \end{small}
-
-% # TODO delete xxx ???
-% #x1_stidf <- as(Tracks_X1, "STIDF")
-% #x1_stfdf <- as(x1_stidf[ , , 4], "STFDF")
-% #bxST <- spacetime::aggregate(x1_stfdf, by = stf_px_X1_4t, 
-% #                             FUN = min, na.rm = TRUE)
-% #all.equal(agg_X1_stf_minHght@data$height_raw, bxST@data$height_raw)
-% #"'is.NA' value mismatch: 280 in current 422 in target"
 
 \par\medskip
 
@@ -2549,28 +2044,6 @@ There is a relation between the minimal altitude of the vulture (Figure \ref{fig
 
 In the following Subsection \ref{subsec:aggregationbysp} the method \code{aggregate} for \pkg{trajectories} objects with a grouping predicate of class \code{Spatial} passed to the \code{by} argument is presented, and for its illustration the pigeon example data sets introduced in Section \ref{sec:exampledatamovebank} are used.
 \par\medskip
-
-
-% # tempTracks <- trajectories::Tracks(list(Tracks_X1[2], Tracks_X1[1]))
-% # tempTracksok <- trajectories::Tracks(list(Tracks_X1[1], Tracks_X1[2]))
-% # 
-% # length(Tracks_X1[1]) # 189
-% # length(Tracks_X1[2]) # 188
-% # tempTracksMoveBurst <- as.MoveBurst(tempTracks)
-% # #length(tempTracksMoveBurst)
-% # tempTracksMoveBurst@timestamps
-% # tempTracksMoveBurst@burstId
-% # 
-% # tempTracksMoveBurstok <- as.MoveBurst(tempTracksok)
-% # tempTracksMoveBurstok@timestamps
-% # tempTracksMoveBurstok@burstId
-% 
-% #str(agg_X1_stf_median@data)
-% #str(agg_X1_1_stf_median@data)
-% 
-% #spplot(spPix_X1_dim15)
-% # ...
-
 
 
 
@@ -2820,17 +2293,9 @@ sp::spplot(agg_pTrC_wMeanSpd["ground_speed"],
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Discussion %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{Discussion/Discussion.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Discussion/Discussion.Rnw}
 
 \chapter{Discussion}
 \label{chap:discussion}
-
-%Outline
-%Zusammenfassung der ergebnisse
-%wie kann ausgangsfragestellung beantwortet werden
-%diskussion der ergebnisse
-%offene Fragen und wiedersprueche
 
 In this chapter the strengths and weaknesses of the implemented methods are discussed.
 In general meaningful methods for spatial and spatio-temporal overlay of \code{Track} objects and for spatial and spatio-temporal aggregation of objects of all classes for trajectories that are defined in the package \pkg{trajectories} are implemented. 
@@ -2857,7 +2322,6 @@ Moreover the method requires huge computation times and thus seems to be little 
 Nevertheless this approach was chosen, because a \textit{pure} spatial aggregation with ignoring and loosing the temporal information of the trajectory points may be easily obtained by the \code{aggregate} method in conjunction with \code{STF} objects as grouping predicates.
 This is shown in Subsection~\ref{subsec:aggregationbyspigntime}.
 \par\medskip
-%%%
 
 Meaningful aggregation also depends on the aggregation functions used to aggregate the attribute data. 
 In the current implementation the function \code{sum}, which is typically not meaningful regarding the aggregation of trajectory data \citep{stasch_meaningful_2014}, is simply attended with a warning message, if it is passed to the aggregation function argument of the methods \code{over} and \code{aggregate}. 
@@ -2913,12 +2377,9 @@ Finally it should be mentioned that the implemented methods in conjunction with 
 
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Conclusion and Outlook %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Conclusions_and_Outlook/ConclusionsAndOutlook.Rnw}
 
 \chapter{Conclusions}
 \label{chap:conclusions}
@@ -3006,12 +2467,6 @@ That represents another remaining difficult challenge.
 \clearpage
 
 
-%If bibliography for \backmatter --> wrong paging
-%%% biblatex
-%\addcontentsline{toc}{chapter}{Bibliography}
-%\printbibliography
-
-%%%
 \bibliography{Traj_Analysis_20140929}
 
 
@@ -3020,22 +2475,15 @@ That represents another remaining difficult challenge.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Appendix %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%If appendix after \backmatter --> wrong references
 
 \appendix
 
 \chapter{Appendix}
-%\label{chap:prepvulturemovestackforcount}
-
-%\chapter{Validation of Coercion}
-%\section{Coercion of \codeintitles{ltraj} objects to \pkg{trajectories} objects}
-
 
 %-----------------------------------------------------------------
 %%% Preparation vulture_MoceStack %%%
 %-----------------------------------------------------------------
 \section{Preparation and coercion of vulture\_moveStack example data}
-%\label{chap:prepvulturemovestackforcount}
 \label{sec:prepvulturemovestackforcount}
 
 As described in detail in the Chapter \ref{chap:exampledata} the vulture\_moveStack data set contains three individuals tracked over 14 days from around 6 a.m. to 6 p.m. With the implemented coercion methods an object of class \code{MoveStack} may be coerced to an object of class \code{Tracks} or \code{TracksCollection} as described in Section \ref{sec:coercionrelatedtomove}. Because \code{vulture\_moveStack} contains three individuals the latter would be appropriate:
@@ -3093,29 +2541,9 @@ names(vulture_TrC[1]@tracks)
 \end{small}
 \par\medskip
 
-% # R code: creating spatial object to be passed to the by argument
-% # Creating Spatial and STF objects
-% # Calculate cellsize and dimension
-% xmin <- min(vulture_TrC@tracksCollectionData$xmin)
-% ymin <- min(vulture_TrC@tracksCollectionData$ymin)
-% 
-% ext <- c(diff(c(xmin, max(vulture_TrC@tracksCollectionData$xmax))),
-%          diff(c(ymin, max(vulture_TrC@tracksCollectionData$ymax))))
-% 
-% csize <- ext[which(ext == max(ext))]/10 # 10 is desired dim
-% dimX <- ceiling(ext[1]/csize) # delete + 1
-% dimY <- ceiling(ext[2]/csize) # delete + 1
-% 
-% # Create grid topolgy
-% gt <- GridTopology(c(xmin + csize/2, ymin + csize/2), c(csize,csize), 
-%                    c(dimX, dimY))
-% 
-% # Create SpatialGrid
-% spG <- SpatialGrid(gt, proj4string = Tracks_X1[1]@sp@proj4string)
-% # Use that spG!!! TODO...!
 
 We realize from the last output that the structure of the \code{TracksCollection} has changed and that (for instance) the first \code{Tracks} object from the \code{TracksCollection} now contains 14 \code{Track} objects instead of one. This newly created \code{TracksCollection} object is used to illustrate implemented methods.
-%%%%%%%%%
+
 \clearpage
 
 
@@ -3123,7 +2551,6 @@ We realize from the last output that the structure of the \code{TracksCollection
 %%% Validation coercion move to trajectories %%%
 %-----------------------------------------------------------------
 \section{Validation of the coercion of \pkg{move} objects to \pkg{trajectories} objects}
-%\label{chap:prepvulturemovestackforcount}
 \label{sec:validmovecoercion}
 
 \begin{small}
@@ -3203,7 +2630,6 @@ class(v_X1_1_mbTracks)[1]
 %%% Validation coercion trajectories to move %%%
 %-----------------------------------------------------------------
 \section{Validation of the coercion of \pkg{trajectories} objects to \pkg{move} objects}
-%\label{chap:prepvulturemovestackforcount}
 \label{sec:validtrajtomovecoercion}
 
 As input the \pkg{trajectories} objects created in Subsection \ref{subsec:coercemovetotraj} respectively in the Appendix \ref{sec:validmovecoercion} are used and the coercion is validated by comparing the newly created \pkg{move} objects with the original \pkg{move} objects used as input for the coercion presented in Subsection \ref{subsec:coercemovetotraj} respectively in Appendix \ref{sec:validmovecoercion}.
@@ -3285,9 +2711,9 @@ identical(attr(wildboars_4Ind_ltraj[[1]], "infolocs")[["pkey"]],
           wb_1_Track@data$pkey)
 
 # Compare as-method and generic method
-# Note: Generic method just works with the adjusted move package!
-#wb_1_Track_gen <- as.Track(wildboars_4Ind_ltraj[1])
-#identical(wb_1_Track, wb_1_Track_gen)
+# Note: Generic method just works with move package version >= 1.4
+wb_1_Track_gen <- as.Track(wildboars_4Ind_ltraj[1])
+identical(wb_1_Track, wb_1_Track_gen)
 
 # Coercion of third and fourth burst which belong to the same individual
 wb_Tracks <- as(wildboars_4Ind_ltraj[3:4], "Tracks")
@@ -3322,9 +2748,9 @@ identical(wb_1_ltraj[[1]][1:length(wb_1_ltraj[[1]])],
           wildboars_4Ind_ltraj[[1]][1:length(wildboars_4Ind_ltraj[[1]])]) 
 
 # Compare as-method and generic method
-# Note: Generic method just works with the adjusted move package!
-#wb_1_ltraj_gen <- as.ltraj(wb_1_Track)
-#identical(wb_1_ltraj, wb_1_ltraj_gen)
+# Note: Generic method just works with move package version >= 1.4
+wb_1_ltraj_gen <- as.ltraj(wb_1_Track)
+identical(wb_1_ltraj, wb_1_ltraj_gen)
 
 # Coercion of Tracks to ltraj
 wb_3and4_ltraj <- as(wb_Tracks, "ltraj")
@@ -3345,53 +2771,6 @@ identical(wb_ltraj, wildboars_4Ind_ltraj)
 \end{small}
 \clearpage
 
-
 \backmatter
-
-
-%If bibliography for \backmatter --> wrong paging
-%%% biblatex
-%\addcontentsline{toc}{chapter}{Bibliography}
-%\printbibliography
-
-%%%
-%\bibliography{Traj_Analysis_20140929.bib}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Plagiatserklaerung %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\SweaveInput{Erklaerung/Erklaerung.Rnw}
-%\SweaveInput{../../../../../../../../../home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/vignettes/Erklaerung/Erklaerung.Rnw}
-
-\chapter*{Statement on Plagiarism - Plagiatserkl\"arung}
-
-\SweaveOpts{concordance=TRUE}
-
-% \ Sweave UTF8
-
-Hiermit versichere ich, dass die vorliegende Arbeit \"uber "Meaningful aggregation of trajectory data in R" selbstst\"andig verfasst worden ist, dass keine anderen Quellen und Hilfsmittel als die angegebenen benutzt worden sind und dass die Stellen der Arbeit, die anderen Werken - auch elektronischen Medien - dem Wortlaut oder Sinn nach entnommen wurden, auf jeden Fall unter Angabe der Quelle als Entlehnung kenntlich gemacht worden sind.
-
-\vspace{48pt}
-
-\begin{tabular}{@{}l@{}}\hline
-(Datum, Unterschrift)
-\end{tabular}
-
-\vspace{48pt}
-
-Ich erkl\"are mich mit einem Abgleich der Arbeit mit anderen Texten zwecks Auffindung von \"Ubereinstimmungen sowie mit einer zu diesem Zweck vorzunehmenden Speicherung der Arbeit in eine Datenbank einverstanden.
-
-\vspace{48pt}
-
-\begin{tabular}{@{}l@{}}\hline
-(Datum, Unterschrift)
-\end{tabular}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 \end{document}

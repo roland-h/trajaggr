@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.11.6)  15 JAN 2015 12:07
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.11.6)  26 JUL 2015 00:50
 entering extended mode
  %&-line parsing enabled.
 **trajagg.tex
@@ -576,26 +576,25 @@ LaTeX Info: Redefining \cite on input line 694.
 ) (./trajagg.aux)
 \openout1 = `trajagg.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 100.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 36.
 
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    ... okay on input line 36.
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -610,7 +609,7 @@ LaTeX Font Info:    ... okay on input line 100.
 \MPnumerator=\count99
 \everyMPtoPDFconversion=\toks19
 )
-LaTeX Info: Redefining \microtypecontext on input line 100.
+LaTeX Info: Redefining \microtypecontext on input line 36.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -625,21 +624,24 @@ File: mt-cmr.cfg 2008/02/29 v1.9a microtype config. file: Computer Modern Roman
  (RS)
 )
 (./trajagg-concordance.tex)
-LaTeX Font Info:    Try loading font information for T1+aess on input line 161.
-
+LaTeX Font Info:    Try loading font information for T1+aess on input line 53.
  (/usr/share/texmf-texlive/tex/latex/ae/t1aess.fd
 File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 161.
+(Font)              <17.28> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 161.
+(Font)              <12> on input line 53.
 
 [1
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./trajagg.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1
+
+
+
+] (./trajagg.toc
 Class scrbook Info: You've told me to use the font selection of the element
 (scrbook)           `sectioning' that is an alias of element `disposition'
 (scrbook)            on input line 1.
@@ -676,8 +678,7 @@ File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 Class scrbook Info: You've told me to use the font selection of the element
 (scrbook)           `sectioning' that is an alias of element `disposition'
 (scrbook)            on input line 18.
- [1
-
+ [2
 
 
 ]
@@ -700,7 +701,7 @@ Class scrbook Info: You've told me to use the font selection of the element
 \tf@toc=\write4
 \openout4 = `trajagg.toc'.
 
- [2] (./trajagg.lot)
+ [3] (./trajagg.lot)
 \tf@lot=\write5
 \openout5 = `trajagg.lot'.
 
@@ -709,10 +710,7 @@ Class scrbook Info: You've told me to use the font selection of the element
 \tf@lof=\write6
 \openout6 = `trajagg.lof'.
 
- [3
-
-
-] [4
+ [4
 
 
 ]
@@ -728,13 +726,13 @@ Chapter 2.
 
 ] [5] [6] [7]
 Chapter 3.
-LaTeX Font Info:    Try loading font information for TS1+aer on input line 523.
+LaTeX Font Info:    Try loading font information for TS1+aer on input line 300.
 
 (/usr/share/R/share/texmf/tex/latex/ts1aer.fd
 File: ts1aer.fd 
 )
 LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <12> not available
-(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 523.
+(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 300.
  [8
 
 
@@ -750,20 +748,20 @@ Chapter 5.
 
 
 ] [20]
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 118
-7.
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 846
+.
  (/usr/share/R/share/texmf/tex/latex/ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 118
-7.
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 846
+.
 
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10.95> not available
-(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 1187
-.
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 846.
+
  [21] [22] [23] [24]
 [25] [26] [27]
 Chapter 6.
@@ -771,45 +769,45 @@ Chapter 6.
 
 
 ] [29] [30] [31] [32] [33]
-<trajagg-over_stf_inspect_byFig.pdf, id=138, 433.62pt x 433.62pt>
+<trajagg-over_stf_inspect_byFig.pdf, id=137, 433.62pt x 433.62pt>
 File: trajagg-over_stf_inspect_byFig.pdf Graphic file (type pdf)
 
 <use trajagg-over_stf_inspect_byFig.pdf> [34 <./trajagg-over_stf_inspect_byFig.
 pdf>] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10.95> not available
-(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 2471.
+(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 2023.
 
 
-<trajagg-count_sp_vulture_TracksX1_fig_1.pdf, id=183, 433.62pt x 433.62pt>
+<trajagg-count_sp_vulture_TracksX1_fig_1.pdf, id=182, 433.62pt x 433.62pt>
 File: trajagg-count_sp_vulture_TracksX1_fig_1.pdf Graphic file (type pdf)
 
 <use trajagg-count_sp_vulture_TracksX1_fig_1.pdf> [46]
-<trajagg-count_sp_vulture_TrC_fig_1.pdf, id=188, 433.62pt x 433.62pt>
+<trajagg-count_sp_vulture_TrC_fig_1.pdf, id=187, 433.62pt x 433.62pt>
 File: trajagg-count_sp_vulture_TrC_fig_1.pdf Graphic file (type pdf)
 
 <use trajagg-count_sp_vulture_TrC_fig_1.pdf> [47 <./trajagg-count_sp_vulture_Tr
 acksX1_fig_1.pdf>] [48 <./trajagg-count_sp_vulture_TrC_fig_1.pdf>]
-<trajagg-count_stf_vulture_X3_fig_1.pdf, id=207, 433.62pt x 433.62pt>
+<trajagg-count_stf_vulture_X3_fig_1.pdf, id=206, 433.62pt x 433.62pt>
 File: trajagg-count_stf_vulture_X3_fig_1.pdf Graphic file (type pdf)
 
 <use trajagg-count_stf_vulture_X3_fig_1.pdf> [49] [50 <./trajagg-count_stf_vult
 ure_X3_fig_1.pdf>] [51] [52]
-<trajagg-agg_stf_vulture_Tracks_X1_fig_1.pdf, id=227, 433.62pt x 433.62pt>
+<trajagg-agg_stf_vulture_Tracks_X1_fig_1.pdf, id=226, 433.62pt x 433.62pt>
 File: trajagg-agg_stf_vulture_Tracks_X1_fig_1.pdf Graphic file (type pdf)
 
 <use trajagg-agg_stf_vulture_Tracks_X1_fig_1.pdf> [53] [54 <./trajagg-agg_stf_v
 ulture_Tracks_X1_fig_1.pdf>]
-<trajagg-agg_stf_vulture_TrC_fig_2.pdf, id=240, 433.62pt x 433.62pt>
+<trajagg-agg_stf_vulture_TrC_fig_2.pdf, id=239, 433.62pt x 433.62pt>
 File: trajagg-agg_stf_vulture_TrC_fig_2.pdf Graphic file (type pdf)
 
 <use trajagg-agg_stf_vulture_TrC_fig_2.pdf> [55] [56 <./trajagg-agg_stf_vulture
 _TrC_fig_2.pdf>] [57] [58] [59]
-<trajagg-agg_sp_pigeon_TrColl_fig_1.pdf, id=263, 433.62pt x 433.62pt>
+<trajagg-agg_sp_pigeon_TrColl_fig_1.pdf, id=262, 433.62pt x 433.62pt>
 File: trajagg-agg_sp_pigeon_TrColl_fig_1.pdf Graphic file (type pdf)
 
 <use trajagg-agg_sp_pigeon_TrColl_fig_1.pdf> [60] [61 <./trajagg-agg_sp_pigeon_
 TrColl_fig_1.pdf>] [62]
-<trajagg-agg_stf_pureSpatial_fig_1.pdf, id=279, 433.62pt x 433.62pt>
+<trajagg-agg_stf_pureSpatial_fig_1.pdf, id=278, 433.62pt x 433.62pt>
 File: trajagg-agg_stf_pureSpatial_fig_1.pdf Graphic file (type pdf)
 
 <use trajagg-agg_stf_pureSpatial_fig_1.pdf> [63] [64 <./trajagg-agg_stf_pureSpa
@@ -845,39 +843,32 @@ Appendix A.
 
 ] [82] [83
 
-] [84
-
-
-
-
-
 ] (./trajagg.aux) ) 
 Here is how much of TeX's memory you used:
- 6132 strings out of 495021
- 94480 string characters out of 1181035
+ 6131 strings out of 495021
+ 94452 string characters out of 1181035
  185638 words of memory out of 3000000
- 8610 multiletter control sequences out of 15000+50000
- 91135 words of font info for 556 fonts, out of 3000000 for 9000
+ 8606 multiletter control sequences out of 15000+50000
+ 87955 words of font info for 557 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 39i,8n,47p,1609b,386s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,8n,47p,1611b,386s stack positions out of 5000i,500n,10000p,200000b,50000s
  </home/harry/.texmf-var/fonts/pk/ljfour/jknappen/ec/tctt109
 5.600pk> </home/harry/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcst1095.600pk> </
 home/harry/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/share/te
 xmf-texlive/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmsltt10.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb
->
-Output written on trajagg.pdf (89 pages, 514967 bytes).
+fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsltt10.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
+/cmtt12.pfb>
+Output written on trajagg.pdf (88 pages, 500462 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
+ 404 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 39981 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 38957 words of extra memory for PDF output out of 42996 (max. 10000000)
 
