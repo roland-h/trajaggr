@@ -16,7 +16,7 @@ NULL
 # implemented in package sp (of points and spatial objects) is the 
 # support of weighting and the calculation of metadata.
 # The method is internally used in the implementation of the methods
-# over (for Track and Spatial objects) and count.
+# 'over' (for Track and Spatial objects) and 'count'.
 
 overIgnDom_sp_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                           use.data = FALSE, weight.points = NULL) {
@@ -76,7 +76,7 @@ overIgnDom_sp_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
             NA
           } 
         } else {
-          #xts object without data
+          # xts object without data
           if (length(z) > 0) {
             
             df <- y@data[z, FALSE, drop = FALSE]
@@ -132,7 +132,7 @@ overIgnDom_sp_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                             nrow = length(y), ncol = 2)
         approxPointDuration <- .rowSums(durMatrix, length(y), 2, na.rm = TRUE)
         
-        # !!! Duration of each Point separated by cells / polygons
+        # Duration of each Point separated by cells / polygons
         approxPointsInCellsDurList <- lapply(cleanIndexList, function(z) {
           if (length(z) == 0) { NA } else { approxPointDuration[z] } })
         
@@ -146,7 +146,7 @@ overIgnDom_sp_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                              nrow = length(y), ncol = 2)
         approxPointDist <- .rowSums(distMatrix, length(y), 2, na.rm = TRUE)
         
-        # !!! Duration of each Point separated by cells / polygons
+        # Duration of each Point separated by cells / polygons
         approxPointsInCellsDistList <- lapply(cleanIndexList, function(z) {
           if (length(z) == 0) { NA } else { approxPointDist[z] } })
         
@@ -181,7 +181,7 @@ overIgnDom_sp_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
             
           } else { # !is.null(weight.points)
             
-            # weighting just for numeric attributes ?!?!?
+            # weighting (just for numeric attributes!)
             
             weightsList <- switch(weight.points,
                                   byTime  = approxPointsInCellsDurList,
@@ -230,7 +230,9 @@ overIgnDom_sp_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
 }
 
 
-# ! overIgnDom is not expoted and thus not documented officially
+# !!!
+# overIgnDom is not expoted and thus not documented officially
+# !!!
 
 # # @rdname over
 # # @aliases over,SpatialPolyons,Track
@@ -242,7 +244,6 @@ setMethod("overIgnDom", signature(x = "SpatialPolygons", y = "Track"), overIgnDo
 # # @aliases over,SpatialGrid,Track
 setMethod("overIgnDom", signature(x = "SpatialGrid", y = "Track"), overIgnDom_sp_Track)
 
-# # @describeIn over
-# # \cr This may be a sub-description...!
+# # @rdname over
 # # @aliases over,SpatialPixels,Track
 setMethod("overIgnDom", signature(x = "SpatialPixels", y = "Track"), overIgnDom_sp_Track)

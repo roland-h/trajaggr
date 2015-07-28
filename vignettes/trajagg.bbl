@@ -163,9 +163,15 @@ Ryan, J.~A. and Ulrich, J.~M. (2014).
 \newblock {\em xts: eXtensible Time Series}.
 \newblock R package version 0.9-7.
 
-\bibitem[Santos et~al., 2014]{santos_temporal_2014}
+\bibitem[Santos et~al., 2014a]{santos2014data}
+Santos, C.~D., Neupert, S., Lipp, H.-P., Wikelski, M., and Dechmann, D.
+  (2014a).
+\newblock Data from: Temporal and contextual consistency of leadership in
+  homing pigeon flocks.
+
+\bibitem[Santos et~al., 2014b]{santos_temporal_2014}
 Santos, C.~D., Neupert, S., Lipp, H.-P., Wikelski, M., and Dechmann, D. K.~N.
-  (2014).
+  (2014b).
 \newblock Temporal and contextual consistency of leadership in homing pigeon
   flocks.
 \newblock {\em {PLoS} {ONE}}, 9(7):e102771.
@@ -180,6 +186,12 @@ Spiegel, O., Getz, W.~M., and Nathan, R. (2013).
 \newblock Factors influencing foraging search efficiency: Why do scarce
   lappet-faced vultures outperform ubiquitous white-backed vultures?
 \newblock {\em The American Naturalist}, 181(5):E102--E115.
+
+\bibitem[Spiegel et~al., 2014]{spiegel2014data}
+Spiegel, O., Getz, W.~M., and Nathan, R. (2014).
+\newblock Data from: Factors influencing foraging search efficiency: Why do
+  scarce lappet-faced vultures outperform ubiquitous white-backed
+  vultures?(v2).
 
 \bibitem[Stasch et~al., 2014]{stasch_meaningful_2014}
 Stasch, C., Scheider, S., Pebesma, E., and Kuhn, W. (2014).

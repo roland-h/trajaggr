@@ -19,7 +19,9 @@ an object of class \code{SpatialPolygons} (default), \code{SpatialPixels} or
 \code{SpatialGrid} as defined by the \code{out} argument
 }
 \description{
-Here comes the description .... TODO
+Function to create objects inheriting from class \code{Spatial} with an
+area-measured character out of SpatialPoints or a SpatialPointsDataFrame.
+The created spatial object covers the spatial extent of the input object.
 }
 \examples{
 ## load data

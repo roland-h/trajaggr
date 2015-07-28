@@ -5,26 +5,6 @@
 #' @import methods sp spacetime trajectories move
 NULL
 
-# # @importClassesFrom move Move MoveStack MoveBurst
-NULL
-
-
-# # Not needed any more
-# #-------------------------------------------------------------------------------
-# # Create a Track object from a subset of an object from the package move (from)
-# # at which the subset is defined by a given index vector (i) (internal function).
-# #-------------------------------------------------------------------------------
-# .indexVecToTrack <- function(i, from) {
-#   # sp row.names anpassen???: row.names(sp) <- paste(x, "_sp_", row.names(sp), sep="")
-#   sp <- geometry(from)[i]
-#   #t <- slot(from, "timestamps")[i]
-#   t <- move::timestamps(from)[i]
-#   #t <- xts::xts(order.by = move::timestamps(from)[i])
-#   # data row.names anpassen???: row.names(d) <- paste(x, "_data_", row.names(d), sep="")
-#   d <- slot(from, "data")[i, ]
-#   Track(STIDF(sp, t, d))
-# }
-
 
 #-------------------------------------------------------------------------------
 # Coerce Move object to Track object
@@ -102,7 +82,7 @@ setAs("MoveBurst", "Tracks",
         trackList <- lapply(moveList, function(x) as(x, "Track"))
                 
         idDataList <- lapply(moveList, function(x) move::idData(x))
-        idData_adj <- do.call(rbind, idDataList)#
+        idData_adj <- do.call(rbind, idDataList)
                 
         idData_adj$burstId <- as.factor(names(moveList))
                 

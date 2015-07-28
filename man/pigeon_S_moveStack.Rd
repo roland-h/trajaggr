@@ -8,7 +8,7 @@
 \source{
 Santos CD, Neupert S, Lipp H-P, Wikelski M, Dechmann D (2014) Temporal and contextual consistency of leadership in homing pigeon flocks. PLOS ONE 9(7): e102771.
 
-Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository.
+Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. doi:10.5441/001/1.33159h1h
 
 Wikelski, M., and Kays, R. 2014. Movebank: archive, analysis and sharing of animal movement data. World Wide Web electronic publication. http://www.movebank.org, accessed on 2014-11-16.
 }

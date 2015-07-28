@@ -92,8 +92,6 @@ if (!isGeneric("over"))
 
 
 
-
-
 #
 # count generic
 #
@@ -235,7 +233,7 @@ if (!isGeneric("aggregate"))
 # # 
 # # Method overIgnDom.
 # # @name overIgnDom
-# # @description This is the description... ; ) !!! TODO
+# # @description This is the description...
 # # Auch geschrieben in roxygen docu for generic!
 # # @param x an object of class \code{Spatial}
 # # @param y an object of class \code{Track}, \code{Tracks} or \code{TracksCollection}

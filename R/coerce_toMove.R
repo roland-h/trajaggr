@@ -151,7 +151,7 @@ setAs("Tracks", "MoveBurst", function(from) {
       }
     }
     
-    # check if data columns equal
+    # check if data columns are equal
     dataList <- lapply(slot(from, "tracks"), function(x) x@data)
     dataNamesList <- lapply(dataList, function(x) names(x))
     maxColCount <- max(sapply(dataNamesList, function(x) length(x)))
@@ -169,14 +169,11 @@ setAs("Tracks", "MoveBurst", function(from) {
       
       stidf <- do.call(rbind, stidfList)
       
-      # After calling rbind the time zone [and maybe row.names (?)] need to be set again
+      # After calling rbind the time zone need to be set again
       xts::indexTZ(stidf@time) <- xts::indexTZ(stidfList[[1]]@time)
-      #rowNames <- unlist(lapply(slot(from, "tracks"), function(x) attr(x@data, "row.names")), 
-      #                   use.names = FALSE, recursive = FALSE)
-      #attr(stidf@data, "row.names") <- rowNames
       
       # Check for duplicated timestamps / relocations
-      # (may be the case if the Tracks object was created out of a MoveBurst,
+      # (May be the case if the Tracks object was created out of a MoveBurst,
       # what on the other hand guarantees that the data slots are 'well structured'.)
       if (!xts::isOrdered(zoo::index(stidf@time), strictly = TRUE)) {
         # Exclude the duplicated instances from stidf ...

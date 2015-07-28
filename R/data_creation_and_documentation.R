@@ -1,7 +1,7 @@
 
 # ###########################################################################
 #
-# Data creation and documentation
+# (Example) Data creation and documentation
 #
 # ###########################################################################
 
@@ -18,20 +18,6 @@
 # ---------------------------------------------------------------------------
 
 # vulture_moveStack 
-
-# load data
-#savePathRData <- "/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/movebank_exData_subsets/"
-#load(paste(savePathRData, "vulture_moveStack_14days.RData", sep = ""), verbose = TRUE)
-
-# adjust height variables from data slot, 
-# which are swaped (checked by consultaion of data owner)
-##str(vulture_moveStack)
-#vulture_moveStack_sic <- vulture_moveStack
-#tmp_false_height_raw <- vulture_moveStack@data$height_raw
-#vulture_moveStack@data$height_raw <- vulture_moveStack@data$height_above_ellipsoid
-##str(vulture_moveStack)
-#vulture_moveStack@data$height_above_ellipsoid <- tmp_false_height_raw
-##str(vulture_moveStack)
 
 # vulture data creation in /data
 #devtools::use_data(vulture_moveStack, vulture_moveStack, overwrite = TRUE)
@@ -61,7 +47,7 @@
 #' @source 
 #' Spiegel O, Getz WM, Nathan R (2013) Factors influencing foraging search efficiency: Why do scarce lappet-faced vultures outperform ubiquitous white-backed vultures? The American Naturalist 181(5), E102-115.
 #' 
-#' Spiegel O, Getz WM, Nathan R (2014) Data from: Factors influencing foraging search efficiency: Why do scarce lappet-faced vultures outperform ubiquitous white-backed vultures? (V2). Movebank Data Repository.
+#' Spiegel O, Getz WM, Nathan R (2014) Data from: Factors influencing foraging search efficiency: Why do scarce lappet-faced vultures outperform ubiquitous white-backed vultures? (V2). Movebank Data Repository. doi:10.5441/001/1.mf903197
 #' 
 #' Wikelski, M., and Kays, R. 2014. Movebank: archive, analysis and sharing of animal movement data. World Wide Web electronic publication. http://www.movebank.org, accessed on 2014-11-16. 
 #' 
@@ -88,10 +74,6 @@
 # pigeon example data
 # ---------------------------------------------------------------------------
 
-
-# pigeon data documentation
-# ...
-# subsets 480 points !?, 2 x 2 x 2 min
 
 # pigeon data creation in /data
 #devtools::use_data(pigeon_R_moveStack, pigeon_R_moveStack, overwrite = TRUE)
@@ -127,7 +109,7 @@
 #' @source 
 #' Santos CD, Neupert S, Lipp H-P, Wikelski M, Dechmann D (2014) Temporal and contextual consistency of leadership in homing pigeon flocks. PLOS ONE 9(7): e102771. 
 #' 
-#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. 
+#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. doi:10.5441/001/1.33159h1h
 #' 
 #' Wikelski, M., and Kays, R. 2014. Movebank: archive, analysis and sharing of animal movement data. World Wide Web electronic publication. http://www.movebank.org, accessed on 2014-11-16.
 #' 
@@ -174,7 +156,7 @@
 #' @source 
 #' Santos CD, Neupert S, Lipp H-P, Wikelski M, Dechmann D (2014) Temporal and contextual consistency of leadership in homing pigeon flocks. PLOS ONE 9(7): e102771. 
 #' 
-#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. 
+#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. doi:10.5441/001/1.33159h1h
 #' 
 #' Wikelski, M., and Kays, R. 2014. Movebank: archive, analysis and sharing of animal movement data. World Wide Web electronic publication. http://www.movebank.org, accessed on 2014-11-16.
 #' 
@@ -219,7 +201,7 @@
 #' @source 
 #' Santos CD, Neupert S, Lipp H-P, Wikelski M, Dechmann D (2014) Temporal and contextual consistency of leadership in homing pigeon flocks. PLOS ONE 9(7): e102771. 
 #' 
-#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. 
+#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. doi:10.5441/001/1.33159h1h
 #' 
 #' Wikelski, M., and Kays, R. 2014. Movebank: archive, analysis and sharing of animal movement data. World Wide Web electronic publication. http://www.movebank.org, accessed on 2014-11-16.
 #' 
@@ -260,7 +242,7 @@
 #' @source 
 #' Santos CD, Neupert S, Lipp H-P, Wikelski M, Dechmann D (2014) Temporal and contextual consistency of leadership in homing pigeon flocks. PLOS ONE 9(7): e102771. 
 #' 
-#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. 
+#' Santos CD, Neupert S, Lipp H, Wikelski M, Dechmann D (2014) Data from: Temporal and contextual consistency of leadership in homing pigeon flocks. Movebank Data Repository. doi:10.5441/001/1.33159h1h
 #' 
 #' Wikelski, M., and Kays, R. 2014. Movebank: archive, analysis and sharing of animal movement data. World Wide Web electronic publication. http://www.movebank.org, accessed on 2014-11-16.
 #' 
@@ -287,12 +269,8 @@
 #
 # ---------------------------------------------------------------------------
 
-
-# !!!
-# --> puechabonsp_ltraj_cut !!! -->
-
 # ---------------------------------------------------------------------------
-# Wild boars example data (1) (Modified 'puechabonsp' data set from adehabitatLT)
+# Wild boars example data (Modified 'puechabonsp' data set from adehabitatLT)
 # ---------------------------------------------------------------------------
 
 # wildboars_4Ind_ltraj
@@ -300,8 +278,6 @@
 # wild boars data creation in /data
 #devtools::use_data(wildboars_4Ind_ltraj, wildboars_4Ind_ltraj, overwrite = TRUE)
 
-# TODO docu...!!!
-# 4 Ind, 5 Bursts, modified from puechabonsp
 
 # wild boars data documentation
 #' \code{wildboars_4Ind_ltraj} - (adjusted) example data from the package \pkg{adehabititLT}
@@ -347,125 +323,3 @@
 #' # for further details run
 #' # ?wildboars_4Ind_ltraj
 "wildboars_4Ind_ltraj"
-
-
-########################################################
-
-
-# Deleted from the package:
-
-# ---------------------------------------------------------------------------
-# Roe deers example data (from capreochiz data set from adehabitatLT)
-# ---------------------------------------------------------------------------
-
-# roedeer_ltraj
-
-# roe deer data creation in /data
-#devtools::use_data(roedeer_ltraj, roedeer_ltraj, overwrite = TRUE)
-
-# TODO docu...!!!
-# infolocs!!!
-
-# # roe deer data documentation
-# # \code{roedeer_ltraj} - example data from \pkg{adehabitatLT}
-# # 
-# # Description: Slightly modified example data from \pkg{adehabitatLT} containing an object
-# # of class \code{ltraj} with three bursts of one Roe Deer. The original data set named 
-# # 'capreochiz' from the \pkg{adehabitatLT} is described as follows:
-# # 'This dataset contains the relocations of a roe deer collected using GPS collars in 
-# # the Chize reserve (Deux-Sevres, France) by the ONCFS 
-# # (Office national de la chasse et de la faune sauvage).'
-# # 
-# # The modifications ... bursts!!!
-# # 
-# # Details:  ...TODO some more details?!
-# # 
-# # @name roedeer_ltraj
-# # 
-# # @usage data(roedeer_ltraj)
-# # 
-# # @format An object of class \code{ltraj}
-# # 
-# # @source 
-# # 
-# # Original data source:
-# # 
-# # Sonia Said, Office national de la chasse et de la faune sauvage, CNERA-CS, 1 place Exelmans, 
-# # 55000 Bar-le-Duc (France).
-# # 
-# # taken from \pkg{adehabititLT}:
-# # 
-# # Calenge, C. (2006) The package adehabitat for the R software: a tool for the analysis of space
-# # and habitat use by animals. Ecological Modelling, 197, 516-519
-# # 
-# # 
-# # 
-# # @examples
-# # ## load example data
-# # ## data(roedeer_ltraj, package = "trajaggr")
-# # data(roedeer_ltraj)
-# # class(roedeer_ltraj)
-# # if (requireNamespace("adehabitatLT", quietly = TRUE)) {
-# #  adehabitatLT::summary.ltraj(roedeer_ltraj) }
-# # # for further details run
-# # # ?roedeer_ltraj
-# "roedeer_ltraj"
-
-
-# ---------------------------------------------------------------------------
-# Wild boars example data ('puechcirc' data set from adehabitatLT, with NA)
-# ---------------------------------------------------------------------------
-
-# wildboars_2Ind_ltraj
-
-# wild boars data creation in /data
-#devtools::use_data(wildboars_2Ind_ltraj, wildboars_2Ind_ltraj, overwrite = TRUE)
-
-# TODO docu...!!!
-# ...
-
-# # wild boars data documentation
-# # \code{wildboars_2Ind_ltraj} - example data from \pkg{adehabitatLT}
-# # 
-# # Description: Example data from \pkg{adehabitatLT} containing an object
-# # of class \code{ltraj} with three bursts of two wild boars. The original data set named 
-# # 'puechcirc' from the \pkg{adehabitatLT} is described as follows:
-# # 'This data set is an object of class ltraj, giving the results of the monitoring of 
-# # 2 wild boars by radio-tracking at Puechabon (Mediterranean habitat, South of France). 
-# # These data have been collected by Daniel Maillard (Office national de la chasse et de 
-# # la faune sauvage), and correspond to the activity period of the wild boar 
-# # (during the night, when the animals forage. The data set puechabonsp in the package 
-# # adehabitatMA describes the resting sites).'
-# # 
-# # Details:  ...TODO some more details?!
-# # 
-# # @name wildboars_2Ind_ltraj
-# # 
-# # @usage data(wildboars_2Ind_ltraj)
-# # 
-# # @format An object of class \code{ltraj}
-# # 
-# # @source 
-# # 
-# # Original data source:
-# # 
-# # Maillard, D. (1996). Occupation et utilisation de la garrigue et du vignoble mediterraneens par 
-# # le Sanglier. Universite d'Aix-Marseille III: PhD thesis.
-# # 
-# # taken from \pkg{adehabititLT}:
-# # 
-# # Calenge, C. (2006) The package adehabitat for the R software: a tool for the analysis of space
-# # and habitat use by animals. Ecological Modelling, 197, 516-519
-# # 
-# # 
-# # 
-# # @examples
-# # ## load example data
-# # ## data(wildboars_2Ind_ltraj, package = "trajaggr")
-# # data(wildboars_2Ind_ltraj)
-# # class(wildboars_2Ind_ltraj)
-# # if (requireNamespace("adehabitatLT", quietly = TRUE)) {
-# #  adehabitatLT::summary.ltraj(wildboars_2Ind_ltraj) }
-# # # for further details run
-# # # ?wildboars_2Ind_ltraj
-# "wildboars_2Ind_ltraj"

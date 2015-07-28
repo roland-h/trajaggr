@@ -17,7 +17,7 @@ restructureLtrajDf <- function(ltrdf, legalRowsInd) {
   
   curDf <- ltrdf[legalRowsInd, , drop = FALSE]
   
-  # adehabitatLT imported, thus the following lines are not needed any more.
+  # Pkg adehabitatLT imported, thus the following lines are not needed any more.
   # Originally it was not planed to import the package,
   # but it is needed for illustartion in the vignette...
   
@@ -44,7 +44,7 @@ restructureLtrajDf <- function(ltrdf, legalRowsInd) {
     
     stopifnot(nrow(curDf) == nrow(cur_info_locs))
     
-    curDf <- cbind(curDf, cur_info_locs) # 
+    curDf <- cbind(curDf, cur_info_locs) 
     
   }
   
@@ -80,7 +80,7 @@ ltrajDfToTrack <- function(ltrdf) {
       
       stopifnot(row.names(curDf) == row.names(info_locs))
       
-      curDf <- cbind(curDf, info_locs) # 
+      curDf <- cbind(curDf, info_locs)  
     }
     
   }
@@ -97,7 +97,7 @@ ltrajDfToTrack <- function(ltrdf) {
   
   connData <- curDf[c("dx", "dy", "dist", "dt", "abs.angle", "rel.angle")]
   
-  # Need to delte the last row
+  # Need to delete the last row
   connData <- connData[-(nrow(connData)), , drop = FALSE]
   
   namesCurDf <- names(curDf)
@@ -166,7 +166,7 @@ setAs("ltraj", "TracksCollection",
 
         idVec <- sapply(from, function(x) attributes(x)$id)
         uniqueIdVec <- unique(idVec)
-        names(uniqueIdVec) <- uniqueIdVec # !!!
+        names(uniqueIdVec) <- uniqueIdVec
         
         idVecWithBurstNames <- idVec 
 
@@ -176,7 +176,7 @@ setAs("ltraj", "TracksCollection",
           stop("attributes(from)$typeII is not TRUE!") 
         }
         
-        # Expecting more than 1 trajectory
+        # Expecting more than one trajectory
         if (length(from) < 2) {
           stop("length(from) > 1 is not TRUE!")
         }

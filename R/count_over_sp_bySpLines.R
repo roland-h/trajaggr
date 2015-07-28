@@ -3,7 +3,9 @@
 # are coerced to 'SpatialLines' and hence the presence of trajectory
 # objects related to the geometries of the 'Spatial' object is based
 # on the intersection of the trajectories' segments with these geometries.
-# These functions are not exported.
+# !!!
+# These functions are not yet implemented as S4 generics and not exported.
+# !!!
 
 ####################
 # Track

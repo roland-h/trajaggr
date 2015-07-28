@@ -543,7 +543,7 @@ The toy data set may be loaded by:
 %Track11_X1, 27116 --> Tracks_X1 --> Gyps africanus
 %Track12_X3, --> Tracks_X3 --> Gyps africanus
 
-The vultures data comes from a study about search efficiency of vultures foraging on spatio-temporally unpredictable carcasses in the Etosha National Park in Namibia \citep{spiegel_factors_2013}.
+The vultures data comes from a study about search efficiency of vultures foraging on spatio-temporally unpredictable carcasses in the Etosha National Park in Namibia \citep{spiegel_factors_2013, spiegel2014data}.
 \par\medskip
 
 The \code{MoveStack} object \code{vulture\_moveStack} represents a subset of the original data set downloaded from movebank and contains trajectory data of three vulture individuals, named X1 (\textit{Gyps africanus}), X2 (\textit{Torgos tracheliotus}) and X3 (\textit{Gyps africanus}). 
@@ -614,7 +614,7 @@ Further information about the data set may be obtained by \code{?vulture\_moveSt
 \minisec{Pigeons data sets}
 
 The pigeons data come from a project, that studied the leadership-based flock structures of homing
-pigeons (\textit{Columba livia}). In particular the repeatability of leadership-based flock structures was studied within a flight and across multiple flights conducted with the same animals \citep{santos_temporal_2014}.
+pigeons (\textit{Columba livia}). In particular the repeatability of leadership-based flock structures was studied within a flight and across multiple flights conducted with the same animals \citep{santos2014data, santos_temporal_2014}.
 \par\medskip
 
 The pigeons data consist of overall four \code{MoveStack} objects. The objects represent already restructured subsets of the original data downloaded from movebank. Each of the \code{MoveStack} objects \code{pigeon\_R\_moveStack} and \code{pigeon\_S\_moveStack} contains two trajectories of one pigeon individual. In each case the trajectories of the two pigeon individuals are sampled regularly and synchronously and are following almost the same course. Each of the four trajectories corresponding to the mentioned objects contains 480 point locations tracked over a period of two minutes and thus the regular sampling rates have a very high frequency characterized by four samples per second. Nine data attributes whose values are corresponding to the tracked point locations are available for each of the trajectories.

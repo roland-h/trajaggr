@@ -1,7 +1,9 @@
 
 #' Function to create objects inheriting from class \code{Spatial} with an area-measured character
 #' @name createSpatialArealObjFromPoints
-#' @description Here comes the description .... TODO
+#' @description Function to create objects inheriting from class \code{Spatial} with an 
+#' area-measured character out of SpatialPoints or a SpatialPointsDataFrame. 
+#' The created spatial object covers the spatial extent of the input object.
 #' @param x an object of class \code{SpatialPoints} or \code{SpatialPointsDataFrame}
 #' @param desDim integer indicating the desired dimension of the return object along 
 #' the larger side of the bbox of the input object \code{x}

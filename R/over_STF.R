@@ -1,48 +1,11 @@
 #' @import methods sp xts spacetime trajectories
 NULL
 
-# @ importFrom xts xts
 #' @importFrom rgeos gIntersects
 NULL
 
 #' @include agg_allGenerics.R
 NULL
-
-###################################################################
-#
-# over:
-# 
-
-# ####
-# # Usage of rgeos::gIntersects instead of sp::over because of some strange 
-# # results given by over with signature(x, SpatialPointsDataFrame)
-# # with x being SpatialPolygons coerced from SpatialGrid (or SpatialPixels):
-# require(trajectories); example("Track")
-# require(raster)
-# rasterLayerA1 <- raster(as(A1, "SpatialPointsDataFrame"),ncols=3,nrows=3)
-# spGridA1 <- as(rasterLayerA1, "SpatialGrid")
-# spPolygA1 <- as(rasterLayerA1, "SpatialPolygons")
-# spPolygA1_fromGrid <- as(spGridA1, "SpatialPolygons") # !!!
-# # Determine which points are intersecting which polygons by rgeos::gIntersects
-# gI_Polyg <- rgeos::gIntersects(spPolygA1, A1@sp, byid = TRUE)
-# gI_Polyg_fromGrid <- rgeos::gIntersects(spPolygA1_fromGrid, A1@sp, byid = TRUE)
-# # Testing for equivalence of the gIntersects results
-# all.equal(gI_Polyg, gI_Polyg_fromGrid)
-# # --> [1] "Attributes: < Component dimnames: Component 2: 9 string mismatches >"
-# # --> ok!
-# # Determine which points are intersecting which polygons by sp::over
-# over_Polyg <- over(spPolygA1, A1@sp, returnList = TRUE)
-# over_Polyg_fromGrid <- over(spPolygA1_fromGrid, A1@sp, returnList = TRUE)
-# # Testing for equivalence of the over results
-# all.equal(over_Polyg, over_Polyg_fromGrid)
-# # [1] "Component 1: Numeric: lengths (1, 0) differ" "Component 3: Numeric: lengths (2, 0) differ"
-# # --> ?
-# # A similar problem occurs with SpatialPolygons coerced from SpatialSpixels.
-# ####
-
-
-
-###################################################################
 
 
 #
@@ -63,18 +26,12 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
   
   geom <- geometry(x@sp)
   
-  ## !!! 
-  #if (!(is(geom, "SpatialPolygons") || is(geom, "SpatialPixels"))) {
-  #  stop("If method over is called with an STF object for argument x, the sp slot of x needs to be of class SpatialPolygons or SpatialPixels")
-  #}
-  
   if (gridded(geom)) {
     geom <- as(geom, "SpatialPolygons")
   }
   
   # Get the time matches
   if (any(x@endTime > as.POSIXct(index(x@time)))) {
-    #end.x <- x@endTime
     tm <- timeMatch(index(x@time), index(y@time), returnList = TRUE, x@endTime)
   } else {
     tm <- timeMatch(index(x@time), index(y@time), returnList = TRUE)
@@ -84,7 +41,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
     ti = tm[[z]] # y entry indices for x@time[i] intervals
     if (length(ti) > 0) {
       
-      #ti # point indices belonging to this time slice
+      # ti # point indices belonging to this time slice
       gI_matrix <- rgeos::gIntersects(y@sp[ti], geom, byid = TRUE) 
       
       if (all(gI_matrix == FALSE)) {
@@ -128,16 +85,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
     }
     
   } else { # use.data == TRUE or selection, data to be returned
-    
-    # Auskommentieren da ich evtl leere Trackobjecte in agg erlauben will ?!?!
-    # --> (TODO)
-    #stopifnot(nrow(y@data) > 0 )
-    # ??? TODO !!!
-    #stopifnot(nrow(y@data) > 0 && length(y@data) > 0)
-    #if (length(y@data) == 0) {
-    #  dfList
-    #}
-    
+
     if (returnList) { # return a list of data.frames
             
       dfList <- lapply(cleanIndexList, function(z) {
@@ -178,7 +126,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
           df <- data.frame(y@data[firstIndexVec, FALSE, drop=FALSE], row.names = rNames)
         }
         
-        # !!! time added additionally !!!
+        # time added additionally
         df$time <- index(y@time)[firstIndexVec]
         df$timeIndex <- as.matrix(y@time)[firstIndexVec]
         df
@@ -198,7 +146,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                             nrow = length(y), ncol = 2)
         approxPointDuration <- .rowSums(durMatrix, length(y), 2, na.rm = TRUE)
         
-        # !!! Duration of each Point separated by cells / polygons
+        # Duration of each Point separated by cells / polygons
         approxPointsInCellsDurList <- lapply(cleanIndexList, function(z) {
           if (length(z) == 0) { NA } else { approxPointDuration[z] } })
         
@@ -211,7 +159,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                             nrow = length(y), ncol = 2)
         approxPointDist <- .rowSums(distMatrix, length(y), 2, na.rm = TRUE)
         
-        # !!! Duration of each Point separated by cells / polygons
+        # Duration of each Point separated by cells / polygons
         approxPointsInCellsDistList <- lapply(cleanIndexList, function(z) {
           if (length(z) == 0) { NA } else { approxPointDist[z] } })
         
@@ -233,8 +181,6 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                   # avoid NaN
                   if (any(!is.na(zz))) {
                     
-                    # !!! Achtung : Auskommentierung aendern!
-                    #fn(zz, na.rm=T)
                     fn(zz, ...)
 
                   } else {
@@ -247,7 +193,7 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
             
           } else { # !is.null(weight.points)
             
-            # weighting just for numeric attributes !?!?!
+            # weighting (just for numeric attributes!)
             
             weightsList <- switch(weight.points,
                                   byTime  = approxPointsInCellsDurList,
@@ -270,7 +216,6 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
                                     
                   if (is.numeric(zz)) {
                     
-                    #fn(zz, weightsList[[z]], na.rm=TRUE)  
                     fn(zz, weightsList[[z]], ...) 
                     
                   } else {

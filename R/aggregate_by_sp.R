@@ -2,10 +2,6 @@
 #' @import methods sp spacetime trajectories
 NULL
 
-## @importFrom rgeos gIntersects
-## @ importFrom xts merge.xts
-NULL
-
 #' @include agg_allGenerics.R over_STF.R aggregate_by_STF.R over_sp.R
 NULL
 
@@ -24,8 +20,8 @@ aggregate_Track_sp <- function(x, by, FUN = mean, ..., simplify = TRUE, use.data
     warning("Aggregation of trajectory data using 'sum' as aggregation function is not meaningful.")
   }
   
-  #identicalCRS tested in over!
-  #identicalTZ as well!
+  # identical CRS tested in over method!
+  # identical TZ as well!
   
   # Check for legal use.data argument
   stopifnot(isTRUE(use.data) || is.character(use.data) || is.numeric(use.data))

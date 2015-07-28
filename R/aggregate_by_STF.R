@@ -17,7 +17,7 @@ aggregate_Track_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.dat
   
   
   
-  # by = stf / stfdf mit Polygons oder Pixels
+  # by = stf / stfdf with Polygons or Pixels
   if (!(is(by@sp, "SpatialPolygons") || is(by@sp, "SpatialPixels"))) {
     stop("If method aggregate is called with an STF object for argument by, the sp slot of by needs to be of class SpatialPolygons or SpatialPixels")
   }
@@ -95,8 +95,8 @@ setMethod("aggregateBy", signature(x = "Track", by = "STF"),
 aggregate_Tracks_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.data = TRUE,
                                 weight.points = NULL, weight.tracks = NULL) {
   
-  # identicalCRS tested in over!
-  # "identicalTZ" as well!
+  # identical CRS tested in over!
+  # identical TZ as well!
   
   # by = stf / stfdf with Polygons or Pixels
   if (!(is(by@sp, "SpatialPolygons") || is(by@sp, "SpatialPixels"))) {
@@ -236,8 +236,8 @@ aggregate_Tracks_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.da
   })
   
   
-  # !!! Calculate new metadata and then delete old from all over_res_list elements
-  # New data: sum of length , duration and track objects per cell
+  # Calculate new metadata and then delete old from all over_res_list elements
+  # New data: sum of length, duration and track objects per cell
 
   mdNames <- c("nlocs", "approx_duration", "approx_distance")
   trackmetadata_list <- lapply(over_res_list, function(z) {
@@ -260,7 +260,6 @@ aggregate_Tracks_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.da
   
   
   # New metadata
-  
   if ("data" %in% slotNames(by)) {
     rNames <- row.names(by@data) } else { rNames <- NULL }
   
@@ -272,7 +271,6 @@ aggregate_Tracks_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.da
   
   # Delete 'old' Track metadata even due to better performance
   over_res_list <-lapply(over_res_list, function(x) { x[ , !names(x) %in% mdNames, drop = FALSE] })
-  
   
   
   # Check if over_res_list[[1]] contains all requested attributes.
@@ -338,9 +336,7 @@ aggregate_Tracks_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.da
         # avoid NaN
         if (any(!is.na(attrMatrix[z, ]))) {
     
-          # Achtung Auskommentierung
           FUN(attrMatrix[z, ], weightsList[[z]], ...)
-          #FUN(attrMatrix[z, ], weightsList[[z]], na.rm = T)
           
         } else {
           NA
@@ -412,8 +408,8 @@ setMethod("aggregateBy", signature(x = "Tracks", by = "STF"),
 aggregate_TracksColl_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, use.data = TRUE,
                                  weight.points = NULL, weight.tracks = NULL, byID = FALSE) {
   
-  #identicalCRS testet in over!
-  #"identicalTZ" as well!
+  # identical CRS testet in over!
+  # identical TZ as well!
   
   if (byID == FALSE) {
     
@@ -597,9 +593,6 @@ aggregate_TracksColl_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, us
           
           attrMatrix <- do.call(cbind, attrDataList)
                     
-          #Achtung Auskommentierung !!!
-          #attrAgg <- apply(attrMatrix, 1, function(z) {
-          #  if (any(!is.na(z))) { FUN(z, na.rm = TRUE) } else { NA } }) 
           attrAgg <- apply(attrMatrix, 1, function(z) {
             if (any(!is.na(z))) { FUN(z, ...) } else { NA } }) 
                     
@@ -633,14 +626,14 @@ aggregate_TracksColl_STF <- function(x, by, FUN = mean, ..., simplify = TRUE, us
           attrMatrix <- do.call(cbind, attrDataList)
           
           attrAgg <- unlist(lapply(1:nrow(attrMatrix), function(z) {
+            
             # avoid NaN
             if (any(!is.na(attrMatrix[z, ]))) {
-              
               FUN(attrMatrix[z, ], weightsList[[z]], ...)
-          
             } else {
               NA
             }
+            
           }), use.names = FALSE)
           
           # Assign values to df

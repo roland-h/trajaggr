@@ -9,7 +9,6 @@ NULL
 NULL
 
 
-
 ### Count of Track ###
 
 count_Track <- function(x, by) { 
@@ -25,7 +24,7 @@ count_Track <- function(x, by) {
     stop("No adequate object passed to argument by in method count.")
   }
   
-  countVec <- as.numeric(!is.na(pi))# !!!
+  countVec <- as.numeric(!is.na(pi))
   
   # Replace 0 with NA
   countVec[countVec == 0] <- NA
@@ -79,7 +78,7 @@ count_Tracks <- function(x, by) {
     countVec <- as.numeric(!is.na(pi))
   })
   
-  rSum <- rowSums(do.call(cbind, lst))#, na.rm = TRUE)
+  rSum <- rowSums(do.call(cbind, lst))
   
   # Replace 0 with NA
   rSum[rSum == 0] <- NA
@@ -130,7 +129,7 @@ count_TracksCollection <- function(x, by, byID = FALSE) {
   listsByID <- lapply(x@tracksCollection, function (z) {
     lapply(z@tracks, function(zz) {
       pi <- FUN(by, zz, returnList = FALSE, use.data = FALSE)
-      countVec <- as.numeric(!is.na(pi))# !!!
+      countVec <- as.numeric(!is.na(pi))
     })
   }) 
   
