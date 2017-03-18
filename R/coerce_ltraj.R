@@ -85,31 +85,50 @@ ltrajDfToTrack <- function(ltrdf) {
     
   }
   
-  # df to Track....
-  
+  # df to Track ...
+
+  # Original row.names ...  
   attr(curDf, "row.names") <- rn
   
-  crds <- curDf[c("x","y")]
+  #   # Implementation due to constructor function "Track" in package trajectories <= 0.1-3
+  #   crds <- curDf[c("x","y")]
+  #   time <- curDf[["date"]]
+  #   sp <- SpatialPoints(crds)
+  #   connData <- curDf[c("dx", "dy", "dist", "dt", "abs.angle", "rel.angle")]
+  #   # Need to delete the last row
+  #   connData <- connData[-(nrow(connData)), , drop = FALSE]
+  #   namesCurDf <- names(curDf)
+  #   varToDrop <- namesCurDf %in% c("x", "y", "date", "dx", "dy", "dist", "dt", "abs.angle", "rel.angle")
+  #   curDf <- curDf[!varToDrop]
+  #   #require(spacetime)
+  #   stidf <- STIDF(sp, time, data = curDf)
+  #   #require(trajectories)
+  #   Track(stidf, df = connData)
   
-  time <- curDf[["date"]]
+  # Implementation due to constructor function "Track" in package trajectories >= 0.1-4
+  # Updated 20170318
   
-  sp <- SpatialPoints(crds)
+  # Which attribute data is NOT related to the trajectory points
+  varToDrop <- names(curDf) %in% c("x", "y", "date", "dx", "dy", "dist", "dt", "abs.angle", "rel.angle")
   
+  #require(spacetime)
+  stidf <- STIDF(sp = SpatialPoints(curDf[c("x","y")]), 
+                 time = curDf[["date"]], 
+                 data = curDf[!varToDrop])
+  
+  #require(trajectories)
+  t <- Track(stidf)
+  
+  # Hard coded: Which of the ltraj data is related to connections ...
   connData <- curDf[c("dx", "dy", "dist", "dt", "abs.angle", "rel.angle")]
-  
   # Need to delete the last row
   connData <- connData[-(nrow(connData)), , drop = FALSE]
   
-  namesCurDf <- names(curDf)
-  varToDrop <- namesCurDf %in% c("x", "y", "date", "dx", "dy", "dist", "dt", "abs.angle", "rel.angle")
+  # Add additional connection data to the TrackStats data (connection slot)
+  slot(t, "connections") <- cbind(slot(t, "connections"), connData)
   
-  curDf <- curDf[!varToDrop]
-  
-  #require(spacetime)
-  stidf <- STIDF(sp, time, data = curDf)
-  
-  #require(trajectories)
-  Track(stidf, df = connData)
+  # Return
+  return(t)
   
 }
 
