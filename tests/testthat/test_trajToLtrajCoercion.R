@@ -215,7 +215,9 @@ for (i in 1:length(trajObjectsList)) {
       expect_that(attributes(myLtraj[[1]])$infolocs, is_identical_to(tmpData))
       
       # Test time
-      expect_that(myLtraj[[1]]$date, is_equivalent_to(zoo::index(trajObj@time))) # ignores attributes
+      #expect_that(myLtraj[[1]]$date, is_equivalent_to(zoo::index(trajObj@time))) # ignores attributes
+      expect_true(all.equal(myLtraj[[1]]$date, zoo::index(trajObj@time), 
+                            check.attributes = F)) # ignores attributes
       #expect_that(myLtraj[[1]]$date, is_identical_to(zoo::index(trajObj@time))) # attributes length mismatch
       # --> attribute tclass, which comes from xts object representing time in Track
       myTime <- zoo::index(trajObj@time)
@@ -311,7 +313,9 @@ for (i in 1:length(trajObjectsList)) {
       
       # Test time
       for (i in seq_along(trajObj@tracks)) {
-        expect_that(myLtraj[[i]]$date, is_equivalent_to(zoo::index(trajObj@tracks[[i]]@time)))      
+        #expect_that(myLtraj[[i]]$date, is_equivalent_to(zoo::index(trajObj@tracks[[i]]@time)))      
+        expect_true(all.equal(myLtraj[[i]]$date, zoo::index(trajObj@tracks[[i]]@time), 
+                              check.attributes = F)) # ignores attributes
       }
       for (i in seq_along(trajObj@tracks)) {
         myTime <- zoo::index(trajObj@tracks[[i]]@time)
@@ -432,8 +436,11 @@ for (i in 1:length(trajObjectsList)) {
       for (h in seq_along(trajObj@tracksCollection)) {
         for (i in seq_along(trajObj@tracksCollection[[h]]@tracks)) {
           counter <- counter + 1
-          expect_that(myLtraj[[counter]]$date, is_equivalent_to(
-            zoo::index(trajObj@tracksCollection[[h]]@tracks[[i]]@time)))      
+          #expect_that(myLtraj[[counter]]$date, is_equivalent_to(
+          #  zoo::index(trajObj@tracksCollection[[h]]@tracks[[i]]@time)))      
+          expect_true(all.equal(myLtraj[[counter]]$date, 
+                                zoo::index(trajObj@tracksCollection[[h]]@tracks[[i]]@time), 
+                                check.attributes = F))      
         } 
       }
       counter <- 0

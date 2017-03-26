@@ -219,7 +219,8 @@ for (i in 1:length(trajObjectsList)) {
       #delete:
       myTime <- zoo::index(trajObj@time)
       attr(myTime, "tclass") <- NULL
-      expect_that(myMove@timestamps, is_equivalent_to(myTime)) # ignores attributes
+      #expect_that(myMove@timestamps, is_equivalent_to(myTime)) # ignores attributes
+      expect_true(all.equal(myMove@timestamps, myTime, check.attributes = F)) # ignores attributes
       #expect_that(myMove@timestamps, is_identical_to(myTime)) # ignores attributes
       ##
       
@@ -435,8 +436,10 @@ for (i in 1:length(trajObjectsList)) {
         tmp@tracks[[i]]@data <- 
           tmp@tracks[[i]]@data[!names(tmp@tracks[[i]]@data) %in% n]
         }
-      expect_that(sp::geometry(myMoveSt),
-                  is_identical_to(sp::geometry(as(tmp, "Spatial")))) # ignores attributes
+      #expect_that(sp::geometry(myMoveSt),
+      #            is_identical_to(sp::geometry(as(tmp, "Spatial")))) # ignores attributes
+      expect_true(all.equal(sp::geometry(myMoveSt), sp::geometry(as(tmp, "Spatial")), 
+                            check.attributes = F)) # ignores attributes
       
       #Test tracksData 
       trcsDataColNames <- names(trajObj@tracksData)

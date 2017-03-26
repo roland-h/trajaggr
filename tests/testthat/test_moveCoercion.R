@@ -266,7 +266,8 @@ for (i in 1:length(movePkgObjectsList)) {
       expect_that(moveObj@data[,1], is_identical_to(myTrack@data[,1]))
       expect_that(moveObj@data, is_identical_to(myTrack@data))
       # Test time
-      expect_that(moveObj@timestamps, is_equivalent_to(zoo::index(myTrack@time))) # ignores attributes
+      #expect_that(moveObj@timestamps, is_equivalent_to(zoo::index(myTrack@time))) # ignores attributes
+      expect_true(all.equal(moveObj@timestamps, zoo::index(myTrack@time), check.attributes = F))      
       #expect_that(moveObj@timestamps, is_identical_to(index(myTrack@time))) # Diff: attributes: < Length mismatch: comparison on first 1 components > 
       myTime <- zoo::index(myTrack@time)
       attr(myTime, "tclass") <- NULL
@@ -401,8 +402,11 @@ for (i in 1:length(movePkgObjectsList)) {
       expect_that(moveObj@timestamps[1],
                   is_equivalent_to(zoo::index(myTracks@tracks[[1]]@time)[1])) # ignores attributes
       
-      expect_that(moveObj@timestamps[1],
-                  is_equivalent_to(zoo::index(as(myTracks@tracks[[1]], "xts")[1]))) # ignores attributes
+      #expect_that(moveObj@timestamps[1],
+      #            is_equivalent_to(zoo::index(as(myTracks@tracks[[1]], "xts")[1]))) # ignores attributes
+      expect_true(all.equal(moveObj@timestamps[1], zoo::index(as(myTracks@tracks[[1]], "xts")[1]), 
+                            check.attributes = F))
+      
       #expect_that(moveObj@timestamps[1], is_identical_to(index(as(myTracks, "xts")[1]))) 
       # --> Diff: Attributes: < Length mismatch: comparison on first 1 components >
       
@@ -429,6 +433,8 @@ for (i in 1:length(movePkgObjectsList)) {
       if (length(myl) > 1){
         for (i in 2:length(myl)) { v <- c(v, myl[[i]]) }
       }
+      timez <- attr(moveObj@timestamps, "tzone")
+      attr(v, "tzone") <- timez
       expect_that(moveObj@timestamps, is_equivalent_to(v))
       expect_equal(moveObj@timestamps, v)
 
@@ -610,8 +616,11 @@ for (i in 1:length(movePkgObjectsList)) {
       #names(moveObj@timestamps)#, "row.names")# --> NULL ??
       #expect_that(zoo::index(as(myTrColl, "xts")[1]),
       #            is_equivalent_to(moveObj@timestamps[1])) # ignores attributes
-      expect_that(zoo::index(as(myTrColl[1], "xts")),
-                  is_equivalent_to(moveObj[[1]]@timestamps)) # ignores attributes
+      
+      #expect_that(zoo::index(as(myTrColl[1], "xts")),
+      #            is_equivalent_to(moveObj[[1]]@timestamps)) # ignores attributes
+      expect_true(all.equal(zoo::index(as(myTrColl[1], "xts")), 
+                            moveObj[[1]]@timestamps, check.attributes = F)) # ignores attributes
       
       #expect_that(moveObj@timestamps[1],
       #            is_equivalent_to(zoo::index(as(myTrColl, "xts")[1]))) # ignores attributes
@@ -640,6 +649,8 @@ for (i in 1:length(movePkgObjectsList)) {
       if (length(myl) > 1) {
         for (i in 2:length(myl)) { v <- c(v, myl[[i]]) }
       }
+      timez <- attr(moveObj@timestamps, "tzone")
+      attr(v, "tzone") <- timez
       expect_that(v, is_equivalent_to(moveObj@timestamps))
       expect_equal(v, moveObj@timestamps)
       #expect_that(moveObj@timestamps, is_equivalent_to(v))
@@ -705,8 +716,12 @@ for (i in 1:length(movePkgObjectsList)) {
       expect_that(moveObj@data[,1], is_identical_to(myTrackFromBursts@data[,1]))
       expect_that(moveObj@data, is_identical_to(myTrackFromBursts@data))
       # Test time
-      expect_that(moveObj@timestamps,
-                  is_equivalent_to(zoo::index(myTrackFromBursts@time))) # ignores attributes
+      #expect_that(moveObj@timestamps,
+      #            is_equivalent_to(zoo::index(myTrackFromBursts@time))) # ignores attributes
+      #expect_true(all.equal(moveObj@timestamps, 
+      #                      zoo::index(myTrackFromBursts@time), check.attributes = F)) # ignores attributes
+      expect_true(all.equal(zoo::index(myTrackFromBursts@time), 
+                            moveObj@timestamps, check.attributes = F)) # ignores attributes
       #expect_that(moveObj@timestamps, is_identical_to(zoo::index(myTrackFromBursts@time))) # Diff: attributes: < Length mismatch: comparison on first 1 components > 
       ##
       # Test geometry
@@ -837,19 +852,25 @@ for (i in 1:length(movePkgObjectsList)) {
                   is_identical_to(myTracksOfBursts@tracks[[1]]@data[1,]))
       
       # Test time
-      expect_that(moveObj@timestamps[1],
-                  is_equivalent_to(zoo::index(myTracksOfBursts@tracks[[1]]@time[1]))) # ignores attributes
+      #expect_that(moveObj@timestamps[1],
+      #            is_equivalent_to(zoo::index(myTracksOfBursts@tracks[[1]]@time[1]))) # ignores attributes
+      expect_true(all.equal(moveObj@timestamps[1], 
+                            zoo::index(myTracksOfBursts@tracks[[1]]@time[1]), check.attributes = F)) # ignores attributes
+      
       expect_that(as.numeric(moveObj@timestamps),
                   is_equivalent_to(
                     unique(unlist(sapply(myTracksOfBursts@tracks, function(x) {
                       zoo::index(x@time)
                     }))))) # ignores attributes                                           
+      
       myl <- sapply(myTracksOfBursts@tracks, function(x) zoo::index(x@time))
       v <- myl[[1]]
       if (length(myl) > 1) {
         for (i in 2:length(myl)) { v <- c(v, myl[[i]]) }
       }
       v_unique <- unique(v)
+      timez <- attr(moveObj@timestamps, "tzone")
+      attr(v_unique, "tzone") <- timez
       expect_that(moveObj@timestamps, is_equivalent_to(v_unique))
       
       # Test geometry
