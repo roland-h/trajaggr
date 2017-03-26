@@ -1375,7 +1375,7 @@ over_sp_partlyIntersec
 # Checking object length:
 intersecPoints <- over_sp_partlyIntersec[(!is.na(over_sp_partlyIntersec))]
 identical(length(over_sp_partlyIntersec), 
-          length(stf_Polys_4t@sp[1:2]) * length(Track_A1[intersecPoints]))
+          length(stf_Polys_4t@sp[1:2]) * length(as(Track_A1, "STIDF")[intersecPoints]))
 
 # returnList = TRUE, with SpatialPixels:
 class(spPix)[1]
