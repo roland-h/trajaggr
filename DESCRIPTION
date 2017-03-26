@@ -51,3 +51,4 @@ Collate:
     'count_over_sp_bySpLines.R'
     'createArealGeometryObjects.R'
     'data_creation_and_documentation.R'
+RoxygenNote: 6.0.1
