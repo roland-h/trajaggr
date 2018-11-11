@@ -19,6 +19,10 @@
 %\bibliographystyle{plainnat}
 
 
+% Fix because \tt is not longer supported
+% https://tex.stackexchange.com/questions/67018/problem-with-moderncv-and-bf-inside-bibliography
+\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+
 % Provide text formats for R code, packages, etc.
 % from https://stat.ethz.ch/pipermail/r-help/2007-November/144810.html
 \newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
@@ -2712,7 +2716,9 @@ identical(attr(wildboars_4Ind_ltraj[[1]], "infolocs")[["pkey"]],
 
 # Compare as-method and generic method
 # Note: Generic method just works with move package version >= 1.4
-wb_1_Track_gen <- as.Track(wildboars_4Ind_ltraj[1])
+# wb_1_Track_gen <- as.Track(wildboars_4Ind_ltraj[1])
+# wb_1_Track_gen <- trajaggr::as.Track(wildboars_4Ind_ltraj[1])
+wb_1_Track_gen <- as(wildboars_4Ind_ltraj[1], "Track")
 identical(wb_1_Track, wb_1_Track_gen)
 
 # Coercion of third and fourth burst which belong to the same individual
