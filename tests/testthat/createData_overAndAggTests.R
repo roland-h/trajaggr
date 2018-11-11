@@ -2,8 +2,8 @@
 load("trajectories_exampleTrack_Data_original.RData", verbose = TRUE)
 load("enviroCar_TestData.RData", verbose = TRUE)
 
-#load("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/tests/testthat/trajectories_exampleTrack_Data_original.RData", verbose = TRUE)
-#load("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/trajaggr/tests/testthat/enviroCar_TestData.RData", verbose = TRUE)
+#load(paste0(getwd(), "/tests/testthat/", "trajectories_exampleTrack_Data_original.RData"), verbose = TRUE)
+#load(paste0(getwd(), "/tests/testthat/", "enviroCar_TestData.RData"), verbose = TRUE)
 
 #source("/home/harry/BSc_Thesis_Traj/R/R_wd/myPkg/movebank_Gyps_ExDataPreparation.R")
 # 
@@ -19,7 +19,7 @@ load("enviroCar_TestData.RData", verbose = TRUE)
 # 
 # # Preparation
 
-print("Data craetion started...!")
+context("Data craetion started...!")
 
 require(sp)
 
@@ -40,6 +40,7 @@ spPolygA <- createSpatialArealObjFromPoints(a_spdf, desDim=3, out = "SpatialPoly
 spPolygA1 <- createSpatialArealObjFromPoints(a1_spdf, desDim=3, out = "SpatialPolygons")
 spPolygEnv1 <- createSpatialArealObjFromPoints(env1_spdf, desDim=7, out = "SpatialPolygons")
 spPolygEnv3x3 <- createSpatialArealObjFromPoints(env1_spdf, desDim=3, out = "SpatialPolygons")
+
 
 # require(raster)
 # rasterLayerEnv1 <- raster(env1_spdf,ncols=7,nrows=7)
@@ -122,6 +123,7 @@ A_ext_inhomogen9 <- trajectories::Tracks(list(A1_noD, A2_noDnoC)) # !!!
 A_ext_inhomogen10 <- trajectories::Tracks(list(A1_noDnoC, A2_noDnoC)) # !!! Special case: just complete empty
 A_ext_inhomogen11 <- trajectories::Tracks(list(A1_noC, A2_noC)) # ?!
 
+
 # # Check areal features by plot:
 # # plot(spPolygA1, axes=T, xlim = c(2, 8), ylim = c(4.5, 7.5))
 # # plot(spGridA1, axes=T, xlim = c(2, 8), ylim = c(4.5, 7.5))
@@ -141,10 +143,13 @@ t0_tz <- as.POSIXct("2013-09-30 01:58:00")#, tzone = "UTC")
 t_tz <- t0_tz + cumsum(rep(1,6) * 120)
 attr(t_tz, "tzone") <- "UTC"
 
+
 # time = t, Track  A1
 # STF @sp = Grid
 stfG <- STF(spGridA1, time = t) # Warnmeldung:
 # In ST(sp, time, endTime) : on constructing ST, converted SpatialGrid to SpatialPixels
+
+
 # STF @sp = Polyg
 stfP <- STF(spPolygA1, time = t)
 # STF @sp = Polyg from Grid
@@ -155,6 +160,7 @@ stfPix <- STF(spPixA1, time = t)
 
 # STF @sp = Polyg, diff tzone
 stfP_tz <- STF(spPolygA1, time = t_tz)
+
 
 # A1 as STF without data
 #A1_stf <- as(STI(A1@sp, A1@time, A1@endTime), "STS")
@@ -169,6 +175,7 @@ stfG_A <- STF(spGridA, time = t)
 
 stfP_Tr <- STF(spPolygTr, time = t)
 stfG_Tr <- STF(spGridTr, time = t)
+
 
 #!!!!!!!
 df <- data.frame(test = runif(length(t)*length(spPolygA1)))
