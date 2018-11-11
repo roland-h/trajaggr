@@ -2,6 +2,12 @@
 #' @import methods sp spacetime xts trajectories move
 NULL
 
+######
+# Change log
+# #
+# 20181108 - Z 226:  row.names(data) <- names(x) # added to fix 
+# # "Error in SpatialPointsDataFrame(coords = cbind(x, y, deparse.level = 0), : row.names of data and coords do not match
+######
 
 # Internal function to create Move objects out of 
 # Track objects with possibility for passing a name argument
@@ -151,7 +157,7 @@ setAs("Tracks", "MoveBurst", function(from) {
       }
     }
     
-    # check if data columns are equal
+    # check if data columns are equal - preparation ...
     dataList <- lapply(slot(from, "tracks"), function(x) x@data)
     dataNamesList <- lapply(dataList, function(x) names(x))
     maxColCount <- max(sapply(dataNamesList, function(x) length(x)))
@@ -217,7 +223,9 @@ setAs("Tracks", "MoveBurst", function(from) {
       y <- do.call(c, yCoordsList)
       time <- do.call(c, timeList)
       
-      m <- move::move(x, y, time, data, proj)
+      row.names(data) <- names(x) # 20181108 - Added to fix "Error in SpatialPointsDataFrame(coords = cbind(x, y, deparse.level = 0), : 
+      # row.names of data and coords do not match ... in the following call of "move::move":
+      m <- move::move(x, y, time, data, proj) 
       
       dimnames(m@coords) <- dimnames(from@tracks[[1]]@sp@coords)
       dimnames(m@bbox) <- dimnames(from@tracks[[1]]@sp@bbox)

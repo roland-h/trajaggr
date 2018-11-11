@@ -34,17 +34,20 @@ print(Sys.time())
 #load("....RData")
 #load(paste(getwd(), "/tests/testthat/", "...RData", sep=""))
 
-load("trajectories_exampleTrack_Data_original.RData", verbose = TRUE)
-#load("/home/harry/BSc_Thesis_Traj/R/R_wd/Exploring_PkgCreation/trajcoer_test/trajcoert01/tests/testthat/trajectories_exampleTrack_Data_original.RData", verbose = TRUE)
-# A, A1, A2, B, B1, B2, Tr
+if (file.exists("trajectories_exampleTrack_Data_original.RData")) {
+  load("trajectories_exampleTrack_Data_original.RData", verbose = TRUE) } else {
+    load(paste0(getwd(), "/tests/testthat/", "trajectories_exampleTrack_Data_original.RData"), verbose = TRUE)
+  } # A, A1, A2, B, B1, B2, Tr
 
 #load("enviroCarTestData.RData", verbose = TRUE)
 #load("/home/harry/BSc_Thesis_Traj/R/R_wd/Exploring_PkgCreation/trajcoer_test/trajcoert01/tests/testthat/enviroCarTestData.RData", verbose = TRUE)
 # enviroCarTracksObj, enviroCarTracksCollObj
 
-load("enviroCar_TestData.RData", verbose = TRUE)
-#load("/home/harry/BSc_Thesis_Traj/R/R_wd/Exploring_PkgCreation/trajcoer_test/trajcoert01/tests/testthat/enviroCar_TestData.RData", verbose = TRUE)
-# enviroCar_TracksObj1 enviroCar_TracksObj2 enviroCar_TracksColl
+if (file.exists("enviroCar_TestData.RData")) {
+  load("enviroCar_TestData.RData", verbose = TRUE)
+} else {
+  load(paste0(getwd(), '/tests/testthat/', 'enviroCar_TestData.RData'), verbose = TRUE)
+  } # enviroCar_TracksObj1 enviroCar_TracksObj2 enviroCar_TracksColl
 #####
 
 
@@ -166,8 +169,8 @@ for (i in 1:length(trajObjectsList)) {
   trajObjName <- trajObjNamesList[[i]]
   
   #delete
-  # trajObj <- enviroCar_TracksObj1 # enviroCar_TracksObj1_AttrDiff
-  # trajObjName <- "enviroCarTracksObj"
+  # trajObj <- enviroCar_TracksObj1_AttrDiff # enviroCar_TracksObj1
+  # trajObjName <- "enviroCar_TracksObj1_AttrDiff"
 
   #===============================================================================
   #-------------------------------------------------------------------------------

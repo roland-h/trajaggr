@@ -16,14 +16,14 @@
 \S4method{over}{STF,Track}(x, y, returnList = FALSE, fn = NULL, ...,
   use.data = FALSE, weight.points = NULL)
 
-\S4method{over}{SpatialPolygons,Track}(x, y, returnList = FALSE, fn = NULL,
-  ..., use.data = FALSE, weight.points = NULL)
+\S4method{over}{SpatialPolygons,Track}(x, y, returnList = FALSE,
+  fn = NULL, ..., use.data = FALSE, weight.points = NULL)
 
-\S4method{over}{SpatialPixels,Track}(x, y, returnList = FALSE, fn = NULL,
-  ..., use.data = FALSE, weight.points = NULL)
+\S4method{over}{SpatialPixels,Track}(x, y, returnList = FALSE,
+  fn = NULL, ..., use.data = FALSE, weight.points = NULL)
 
-\S4method{over}{SpatialGrid,Track}(x, y, returnList = FALSE, fn = NULL, ...,
-  use.data = FALSE, weight.points = NULL)
+\S4method{over}{SpatialGrid,Track}(x, y, returnList = FALSE, fn = NULL,
+  ..., use.data = FALSE, weight.points = NULL)
 }
 \arguments{
 \item{x}{object of class \code{Spatial} or \code{STF} (see section 'Usage')}

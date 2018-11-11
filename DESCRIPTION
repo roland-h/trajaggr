@@ -35,6 +35,7 @@ Suggests:
     testthat
 License: GPL (>= 2)
 LazyData: true
+Encoding: UTF-8
 Collate:
     'agg_allGenerics.R'
     'over_STF.R'
@@ -51,4 +52,4 @@ Collate:
     'count_over_sp_bySpLines.R'
     'createArealGeometryObjects.R'
     'data_creation_and_documentation.R'
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

@@ -4,7 +4,8 @@
 \alias{createSpatialArealObjFromPoints}
 \title{Function to create objects inheriting from class \code{Spatial} with an area-measured character}
 \usage{
-createSpatialArealObjFromPoints(x, desDim = 10, out = "SpatialPolygons")
+createSpatialArealObjFromPoints(x, desDim = 10,
+  out = "SpatialPolygons")
 }
 \arguments{
 \item{x}{an object of class \code{SpatialPoints} or \code{SpatialPointsDataFrame}}
