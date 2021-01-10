@@ -17,7 +17,13 @@ over_STF_Track <- function(x, y, returnList = FALSE, fn = NULL, ...,
   
   stopifnot(identicalCRS(x,y))
   
-  stopifnot(identical(attr(x@time, "tzone"), attr(y@time, "tzone")))
+  stopifnot(identical(attr(x@time, "tzone"), attr(y@time, "tzone"))
+            # Following added 20210109
+            # attr 'tzone' turned out to be NULL or "" in tests ...
+            # #(Not clear what causes this change and what was the old (unique) value ...!
+            # #Maybe caused by changes in pkg spacetime or trajectories!?
+            # #Pkg spacetime supports different time vectors / classes!)
+            || all(c(attr(x@time, "tzone"), attr(y@time, "tzone")) %in% c("", NULL)))
   
   # warning in case of fn == sum
   if (paste(deparse(fn), collapse="") == paste(deparse(sum),collapse="")) {
