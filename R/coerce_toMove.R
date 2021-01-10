@@ -175,8 +175,12 @@ setAs("Tracks", "MoveBurst", function(from) {
       
       stidf <- do.call(rbind, stidfList)
       
-      # After calling rbind the time zone need to be set again
-      xts::indexTZ(stidf@time) <- xts::indexTZ(stidfList[[1]]@time)
+      # # After calling rbind the time zone need to be set again
+      # # Following change 20210109
+      # # indexTZ deprecated as of +/- xts 0.7-4
+      # xts::indexTZ(stidf@time) <- xts::indexTZ(stidfList[[1]]@time)
+      # # changed (without explicit testing) to 
+      xts::tzone(stidf@time) <- xts::tzone(stidfList[[1]]@time)
       
       # Check for duplicated timestamps / relocations
       # (May be the case if the Tracks object was created out of a MoveBurst,
